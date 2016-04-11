@@ -124,6 +124,7 @@ CREATE TABLE "measures" (
 );
 
 
+ALTER TABLE public.services_2_phone_number ADD CONSTRAINT services_2_phone_number_phone_number_id_service_id_blocked_key UNIQUE(phone_number_id, service_id, blocked);
 
 ALTER TABLE "user_profile" ADD CONSTRAINT "user_profile_fk0" FOREIGN KEY ("id") REFERENCES "user"("id");
 
