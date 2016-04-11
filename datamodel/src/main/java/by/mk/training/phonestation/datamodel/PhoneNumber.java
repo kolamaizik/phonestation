@@ -1,6 +1,5 @@
 package by.mk.training.phonestation.datamodel;
 
-import java.util.List;
 import java.util.Set;
 
 public class PhoneNumber extends AbstractModel {
@@ -43,12 +42,11 @@ public class PhoneNumber extends AbstractModel {
 		this.blocked = blocked;
 	}
 
-	public List<Service> getService() {
+	public Set<Service> getService() {
 		return service;
 	}
 
-	public void setService(List<Service> service) {
+	public void setService(Set<Service> service) {
 		this.service = service;
 	}
-
 }
