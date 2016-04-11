@@ -47,5 +47,4 @@ public class User extends AbstractModel {
 	public void setRole(UserRole role) {
 		this.role = role;
 	}
-
 }

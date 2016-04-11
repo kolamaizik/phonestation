@@ -1,0 +1,9 @@
+/bin/
+.project
+services/target/
+*.class
+dataccess/.settings/
+datamodel/.settings/
+dataccess/target/
+datamodel/target/
+services/.settings/

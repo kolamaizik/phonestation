@@ -8,7 +8,6 @@ public class PhoneNumber extends AbstractModel {
 	private UserProfile user;
 	private Ats ats;
 	private Byte blocked;
-
 	private List<Service> service;
 
 	public int getPhoneNumber() {

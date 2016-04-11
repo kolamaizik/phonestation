@@ -49,5 +49,4 @@ public class Price extends AbstractModel {
 	public void setMeasures(Measures measures) {
 		this.measures = measures;
 	}
-
 }

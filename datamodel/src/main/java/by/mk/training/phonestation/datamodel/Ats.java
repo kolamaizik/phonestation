@@ -3,7 +3,7 @@ package by.mk.training.phonestation.datamodel;
 public class Ats extends AbstractModel {
 
 	private String name;
-	private int code_ats;
+	private int codeAts;
 	private String address;
 	private int countNumber;
 
@@ -15,12 +15,12 @@ public class Ats extends AbstractModel {
 		this.name = name;
 	}
 
-	public int getCode_ats() {
-		return code_ats;
+	public int getCodeAts() {
+		return codeAts;
 	}
 
-	public void setCode_ats(int code_ats) {
-		this.code_ats = code_ats;
+	public void setCodeAts(int codeAts) {
+		this.codeAts = codeAts;
 	}
 
 	public String getAddress() {
@@ -31,12 +31,11 @@ public class Ats extends AbstractModel {
 		this.address = address;
 	}
 
-	public int getCount_number() {
+	public int getCountNumber() {
 		return countNumber;
 	}
 
-	public void setCount_number(int count_number) {
-		this.countNumber = count_number;
+	public void setCountNumber(int countNumber) {
+		this.countNumber = countNumber;
 	}
-
 }

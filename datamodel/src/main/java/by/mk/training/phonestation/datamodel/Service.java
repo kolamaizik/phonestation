@@ -31,5 +31,4 @@ public class Service extends AbstractModel {
 	public void setDateBlocked(Date dateBlocked) {
 		this.dateBlocked = dateBlocked;
 	}
-
 }
