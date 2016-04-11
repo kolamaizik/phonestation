@@ -1,6 +1,6 @@
 package by.mk.training.phonestation.datamodel;
 
-public class PhoneNumber {
+public class PhoneNumber extends AbstractModel {
 	private int phoneNumber;
 	private UserProfile user;
 	private Ats ats;

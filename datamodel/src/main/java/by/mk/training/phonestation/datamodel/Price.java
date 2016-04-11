@@ -2,7 +2,7 @@ package by.mk.training.phonestation.datamodel;
 
 import java.util.Date;
 
-public class Price {
+public class Price extends AbstractModel {
 	private Service service;
 	private Date dateBegin;
 	private Date dateEnd;

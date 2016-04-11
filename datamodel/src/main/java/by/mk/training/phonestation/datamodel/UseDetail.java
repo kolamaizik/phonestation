@@ -2,7 +2,7 @@ package by.mk.training.phonestation.datamodel;
 
 import java.util.Date;
 
-public class UseDetail {
+public class UseDetail extends AbstractModel {
 	private PhoneNumber phoneNumber;
 	private Service service;
 	private Double quantity;
