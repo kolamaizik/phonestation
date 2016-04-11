@@ -3,6 +3,7 @@ package by.mk.training.phonestation.datamodel;
 import java.util.List;
 
 public class PhoneNumber extends AbstractModel {
+
 	private int phoneNumber;
 	private UserProfile user;
 	private Ats ats;

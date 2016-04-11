@@ -4,9 +4,17 @@ import java.util.Date;
 import java.util.List;
 
 public class Service extends AbstractModel {
-
+	private String name;
 	private List<PhoneNumber> phoneNumber;
 	private Date dateBlocked;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public List<PhoneNumber> getPhoneNumber() {
 		return phoneNumber;

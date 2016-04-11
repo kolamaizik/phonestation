@@ -1,9 +1,19 @@
 package by.mk.training.phonestation.datamodel;
 
 public class Ats extends AbstractModel {
+
+	private String name;
 	private int code_ats;
 	private String address;
 	private int countNumber;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public int getCode_ats() {
 		return code_ats;
