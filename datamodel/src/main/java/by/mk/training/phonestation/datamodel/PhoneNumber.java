@@ -1,6 +1,7 @@
 package by.mk.training.phonestation.datamodel;
 
 import java.util.List;
+import java.util.Set;
 
 public class PhoneNumber extends AbstractModel {
 
@@ -8,7 +9,7 @@ public class PhoneNumber extends AbstractModel {
 	private UserProfile user;
 	private Ats ats;
 	private Byte blocked;
-	private List<Service> service;
+	private Set<Service> service;
 
 	public int getPhoneNumber() {
 		return phoneNumber;
