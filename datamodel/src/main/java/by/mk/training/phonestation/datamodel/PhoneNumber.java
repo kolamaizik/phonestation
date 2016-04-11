@@ -1,10 +1,14 @@
 package by.mk.training.phonestation.datamodel;
 
+import java.util.List;
+
 public class PhoneNumber extends AbstractModel {
 	private int phoneNumber;
 	private UserProfile user;
 	private Ats ats;
 	private Byte blocked;
+
+	private List<Service> service;
 
 	public int getPhoneNumber() {
 		return phoneNumber;
@@ -36,6 +40,14 @@ public class PhoneNumber extends AbstractModel {
 
 	public void setBlocked(Byte blocked) {
 		this.blocked = blocked;
+	}
+
+	public List<Service> getService() {
+		return service;
+	}
+
+	public void setService(List<Service> service) {
+		this.service = service;
 	}
 
 }
