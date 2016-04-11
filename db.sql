@@ -89,7 +89,6 @@ CREATE TABLE "payment" (
 	"total_price" numeric NOT NULL,
 	"date_payment" DATE NOT NULL,
 	"period" DATE NOT NULL,
-	"fine" numeric NOT NULL,
 	CONSTRAINT payment_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
