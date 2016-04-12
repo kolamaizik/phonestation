@@ -1,30 +1,14 @@
+
 package by.mk.training.phonestation.datamodel;
 
 import java.util.Date;
 
 public class UseDetail extends AbstractModel {
 
-	private Contract contract;
-	private Service service;
 	private Double quantity;
 	private Date period;
 	private Date dateUseService;
-
-	public Contract getContract() {
-		return contract;
-	}
-
-	public void setContract(Contract contract) {
-		this.contract = contract;
-	}
-
-	public Service getService() {
-		return service;
-	}
-
-	public void setService(Service service) {
-		this.service = service;
-	}
+	private ServiceContract serviceContract;
 
 	public Double getQuantity() {
 		return quantity;
@@ -48,5 +32,13 @@ public class UseDetail extends AbstractModel {
 
 	public void setDateUseService(Date dateUseService) {
 		this.dateUseService = dateUseService;
+	}
+
+	public ServiceContract getServiceContract() {
+		return serviceContract;
+	}
+
+	public void setServiceContract(ServiceContract serviceContract) {
+		this.serviceContract = serviceContract;
 	}
 }

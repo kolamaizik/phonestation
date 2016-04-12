@@ -4,27 +4,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Payment extends AbstractModel {
-	private Contract contract;
-	private Service service;
+
 	private BigDecimal totalSum;
 	private Date datePayment;
 	private BigDecimal paySum;
-
-	public Contract getContract() {
-		return contract;
-	}
-
-	public void setContract(Contract contract) {
-		this.contract = contract;
-	}
-
-	public Service getService() {
-		return service;
-	}
-
-	public void setService(Service service) {
-		this.service = service;
-	}
+	private Date period;
+	private ServiceContract serviceContract;
 
 	public BigDecimal getTotalSum() {
 		return totalSum;
@@ -48,5 +33,21 @@ public class Payment extends AbstractModel {
 
 	public void setPaySum(BigDecimal paySum) {
 		this.paySum = paySum;
+	}
+
+	public Date getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(Date period) {
+		this.period = period;
+	}
+
+	public ServiceContract getServiceContract() {
+		return serviceContract;
+	}
+
+	public void setServiceContract(ServiceContract serviceContract) {
+		this.serviceContract = serviceContract;
 	}
 }

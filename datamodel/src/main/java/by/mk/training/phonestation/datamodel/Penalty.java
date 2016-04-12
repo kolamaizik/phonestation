@@ -1,16 +1,19 @@
 package by.mk.training.phonestation.datamodel;
 
+import java.math.BigDecimal;
+
 public class Penalty extends AbstractModel {
+
 	private Payment payment;
 	private Double percent;
-	private Double sumNoPay;
+	private BigDecimal sumNoPay;
 
 	public Payment getPayment() {
 		return payment;
 	}
 
-	public void setPayment(Payment paymentId) {
-		this.payment = paymentId;
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 
 	public Double getPercent() {
@@ -21,11 +24,11 @@ public class Penalty extends AbstractModel {
 		this.percent = percent;
 	}
 
-	public Double getSumNoPay() {
+	public BigDecimal getSumNoPay() {
 		return sumNoPay;
 	}
 
-	public void setSumNoPay(Double sumNoPay) {
+	public void setSumNoPay(BigDecimal sumNoPay) {
 		this.sumNoPay = sumNoPay;
 	}
 }

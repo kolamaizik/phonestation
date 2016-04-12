@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 public class Contract extends AbstractModel {
+
 	private UserProfile user;
 	private PhoneNumber phoneNumber;
 	private Date dateBegin;
