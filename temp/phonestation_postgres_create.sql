@@ -25,7 +25,6 @@ CREATE TABLE "user_profile" (
 CREATE TABLE "use_detail" (
 	"id" serial NOT NULL,
 	"service_2_contract_id" int NOT NULL,
-	"period" DATE NOT NULL,
 	"quantity" numeric NOT NULL,
 	"date_use_service" TIMESTAMP NOT NULL,
 	CONSTRAINT use_detail_pk PRIMARY KEY ("id")
