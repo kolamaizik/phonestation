@@ -3,28 +3,11 @@ package by.mk.training.phonestation.datamodel;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Payment extends AbstractModel {
-	private Contract contract;
-	private Service service;
+public class Payment2 extends AbstractModel {
 	private BigDecimal totalSum;
 	private Date datePayment;
 	private BigDecimal paySum;
-
-	public Contract getContract() {
-		return contract;
-	}
-
-	public void setContract(Contract contract) {
-		this.contract = contract;
-	}
-
-	public Service getService() {
-		return service;
-	}
-
-	public void setService(Service service) {
-		this.service = service;
-	}
+	private Date period;
 
 	public BigDecimal getTotalSum() {
 		return totalSum;
@@ -48,5 +31,13 @@ public class Payment extends AbstractModel {
 
 	public void setPaySum(BigDecimal paySum) {
 		this.paySum = paySum;
+	}
+
+	public Date getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(Date period) {
+		this.period = period;
 	}
 }
