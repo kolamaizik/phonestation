@@ -7,7 +7,7 @@ public class Price extends AbstractModel {
 	private Service service;
 	private Date dateBegin;
 	private Date dateEnd;
-	private Price price;
+	private Double price;
 	private Measures measures;
 
 	public Service getService() {
@@ -34,11 +34,11 @@ public class Price extends AbstractModel {
 		this.dateEnd = dateEnd;
 	}
 
-	public Price getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Price price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

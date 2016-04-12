@@ -1,11 +1,11 @@
 package by.mk.training.phonestation.datamodel;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 public class Service extends AbstractModel {
 	private String name;
-	private List<PhoneNumber> phoneNumber;
+	private Set<Contract> contract;
 	private Date dateBlocked;
 
 	public String getName() {
@@ -16,12 +16,12 @@ public class Service extends AbstractModel {
 		this.name = name;
 	}
 
-	public List<PhoneNumber> getPhoneNumber() {
-		return phoneNumber;
+	public Set<Contract> getContract() {
+		return contract;
 	}
 
-	public void setPhoneNumber(List<PhoneNumber> phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setContract(Set<Contract> contract) {
+		this.contract = contract;
 	}
 
 	public Date getDateBlocked() {

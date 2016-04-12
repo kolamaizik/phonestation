@@ -4,7 +4,7 @@ public class Ats extends AbstractModel {
 
 	private String name;
 	private int codeAts;
-	private String address;
+	private String district;
 	private int countNumber;
 
 	public String getName() {
@@ -23,12 +23,12 @@ public class Ats extends AbstractModel {
 		this.codeAts = codeAts;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getDistrict() {
+		return district;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setDistrict(String district) {
+		this.district = district;
 	}
 
 	public int getCountNumber() {
