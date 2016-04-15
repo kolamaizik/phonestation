@@ -6,7 +6,7 @@ import java.util.Set;
 public class Contract extends AbstractModel {
 
 	private UserProfile user;
-	private PhoneNumber phoneNumber;
+	private int phoneNumber;
 	private Date dateBegin;
 	private Date dateEnd;
 	private Set<Service> service;
@@ -19,11 +19,11 @@ public class Contract extends AbstractModel {
 		this.user = user;
 	}
 
-	public PhoneNumber getPhoneNumber() {
+	public int getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(PhoneNumber phoneNumber) {
+	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

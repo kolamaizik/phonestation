@@ -1,13 +1,14 @@
 package by.mk.training.phonestation.datamodel;
 
 import java.util.Date;
+import java.math.BigDecimal;
 
 public class Price extends AbstractModel {
 
 	private Service service;
 	private Date dateBegin;
 	private Date dateEnd;
-	private Double price;
+	private BigDecimal price;
 	private Measures measures;
 
 	public Service getService() {
@@ -34,11 +35,11 @@ public class Price extends AbstractModel {
 		this.dateEnd = dateEnd;
 	}
 
-	public Double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

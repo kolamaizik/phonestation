@@ -6,8 +6,8 @@ CREATE DATABASE phonestation
        LC_COLLATE = 'Russian_Russia.1251'
        LC_CTYPE = 'Russian_Russia.1251'
        CONNECTION LIMIT = -1;
---*/
 
+--*/
 CREATE TABLE "user_profile" (
 	"id" serial NOT NULL,
 	"first_name" character varying(100) NOT NULL,
@@ -74,8 +74,8 @@ CREATE TABLE "service" (
 
 CREATE TABLE "payment" (
 	"id" serial NOT NULL,
-	"period" DATE NOT NULL,
 	"service_2_contract_id" int NOT NULL,
+	"period" DATE NOT NULL,
 	"total_sum" numeric NOT NULL,
 	"date_payment" DATE NOT NULL,
 	"paid" bit NOT NULL,
@@ -112,14 +112,13 @@ CREATE TABLE "measures" (
 CREATE TABLE "contract" (
 	"id" serial NOT NULL,
 	"user_id" int NOT NULL,
-	"phone_number_id" int NOT NULL UNIQUE,
+	"phone_number" int NOT NULL UNIQUE,
 	"date_begin" DATE NOT NULL,
 	"date_end" DATE NOT NULL,
 	CONSTRAINT contract_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
-
 
 
 ALTER TABLE "user_profile" ADD CONSTRAINT "user_profile_fk0" FOREIGN KEY ("id") REFERENCES "user"("id");
@@ -133,12 +132,8 @@ ALTER TABLE "services_2_contract" ADD CONSTRAINT "services_2_contract_key0" UNIQ
 ALTER TABLE "services_2_contract" ADD CONSTRAINT "services_2_contract_fk0" FOREIGN KEY ("service_id") REFERENCES "service"("id");
 ALTER TABLE "services_2_contract" ADD CONSTRAINT "services_2_contract_fk1" FOREIGN KEY ("contract_id") REFERENCES "contract"("id");
 
-
 ALTER TABLE "payment" ADD CONSTRAINT "payment_fk0" FOREIGN KEY ("service_2_contract_id") REFERENCES "services_2_contract"("id");
 
 ALTER TABLE "user" ADD CONSTRAINT "user_fk0" FOREIGN KEY ("id") REFERENCES "user_profile"("id");
 
-
 ALTER TABLE "contract" ADD CONSTRAINT "contract_fk0" FOREIGN KEY ("user_id") REFERENCES "user_profile"("id");
-ALTER TABLE "contract" ADD CONSTRAINT "contract_fk1" FOREIGN KEY ("phone_number_id") REFERENCES ""("");
-

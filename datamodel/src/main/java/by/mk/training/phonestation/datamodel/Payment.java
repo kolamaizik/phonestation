@@ -10,6 +10,7 @@ public class Payment extends AbstractModel {
 	private BigDecimal paySum;
 	private Date period;
 	private ServiceContract serviceContract;
+	private Boolean paid;
 
 	public BigDecimal getTotalSum() {
 		return totalSum;
@@ -49,5 +50,13 @@ public class Payment extends AbstractModel {
 
 	public void setServiceContract(ServiceContract serviceContract) {
 		this.serviceContract = serviceContract;
+	}
+
+	public Boolean getPaid() {
+		return paid;
+	}
+
+	public void setPaid(Boolean paid) {
+		this.paid = paid;
 	}
 }
