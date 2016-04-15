@@ -3,9 +3,13 @@ package by.mk.training.phonestation.datamodel;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+
 public class UseDetail extends AbstractModel {
 
+	@Column
 	private Double quantity;
+	@Column
 	private Date dateUseService;
 	private ServiceContract serviceContract;
 

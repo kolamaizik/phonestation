@@ -1,8 +1,11 @@
 package by.mk.training.phonestation.datamodel;
 
-import java.util.Date;
+ import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Contract extends AbstractModel {
 
 	private UserProfile user;

@@ -2,13 +2,20 @@ package by.mk.training.phonestation.datamodel;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+
 public class UserProfile extends AbstractModel {
 
 	private User user;
+	@Column
 	private String firstName;
+	@Column
 	private String lastName;
+	@Column
 	private String address;
+	@Column
 	private int blocked;
+	@Column
 	private Date created;
 
 	public User getUser() {

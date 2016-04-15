@@ -1,13 +1,19 @@
 package by.mk.training.phonestation.datamodel;
 
 import java.util.Date;
+
+import javax.persistence.Column;
+
 import java.math.BigDecimal;
 
 public class Price extends AbstractModel {
 
 	private Service service;
+	@Column
 	private Date dateBegin;
+	@Column
 	private Date dateEnd;
+	@Column
 	private BigDecimal price;
 	private Measures measures;
 

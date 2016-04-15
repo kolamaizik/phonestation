@@ -1,8 +1,13 @@
 package by.mk.training.phonestation.datamodel;
 
+import javax.persistence.Column;
+
 public class ServiceContract {
+
 	private Service service;
+	@Column
 	private Contract contract;
+	@Column
 	private Byte blocked;
 
 	public Service getService() {

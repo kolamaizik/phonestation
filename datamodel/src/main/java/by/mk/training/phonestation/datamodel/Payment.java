@@ -3,13 +3,20 @@ package by.mk.training.phonestation.datamodel;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
+
 public class Payment extends AbstractModel {
 
+	@Column
 	private BigDecimal totalSum;
+	@Column
 	private Date datePayment;
+	@Column
 	private BigDecimal paySum;
+	@Column
 	private Date period;
 	private ServiceContract serviceContract;
+	@Column
 	private Boolean paid;
 
 	public BigDecimal getTotalSum() {

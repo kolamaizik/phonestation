@@ -1,10 +1,21 @@
 package by.mk.training.phonestation.datamodel;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 public class User extends AbstractModel {
 
 	private UserProfile profile;
+
+	@Column
 	private String email;
+
+	@Column
 	private String password;
+
+	@Column
+	@Enumerated(EnumType.ORDINAL)
 	private UserRole role;
 
 	public UserProfile getProfile() {

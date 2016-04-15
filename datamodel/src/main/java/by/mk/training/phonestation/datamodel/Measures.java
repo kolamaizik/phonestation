@@ -1,8 +1,12 @@
 package by.mk.training.phonestation.datamodel;
 
+import javax.persistence.Column;
+
 public class Measures extends AbstractModel {
 
+	@Column
 	private String name;
+	@Column
 	private Double value;
 	private Service service;
 
