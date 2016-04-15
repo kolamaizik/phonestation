@@ -6,7 +6,7 @@ import java.util.Set;
 public class Service extends AbstractModel {
 	private String name;
 	private Set<Contract> contract;
-	private Date dateBlocked;
+	private Date dateEnd;
 
 	public String getName() {
 		return name;
@@ -25,10 +25,10 @@ public class Service extends AbstractModel {
 	}
 
 	public Date getDateBlocked() {
-		return dateBlocked;
+		return dateEnd;
 	}
 
 	public void setDateBlocked(Date dateBlocked) {
-		this.dateBlocked = dateBlocked;
+		this.dateEnd = dateBlocked;
 	}
 }

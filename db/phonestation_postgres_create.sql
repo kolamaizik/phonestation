@@ -64,7 +64,7 @@ CREATE TABLE "services_2_contract" (
 CREATE TABLE "service" (
 	"id" serial NOT NULL,
 	"name" character varying(255) NOT NULL,
-	"date_blocked" DATE NOT NULL,
+	"date_end" DATE NOT NULL,
 	CONSTRAINT service_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
