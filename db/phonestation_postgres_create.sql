@@ -9,7 +9,7 @@ CREATE DATABASE phonestation
 
 --*/
 CREATE TABLE "user_profile" (
-	"id" serial NOT NULL,
+	"id" int NOT NULL,
 	"first_name" character varying(100) NOT NULL,
 	"last_name" character varying(100) NOT NULL,
 	"address" character varying(255) NOT NULL,
