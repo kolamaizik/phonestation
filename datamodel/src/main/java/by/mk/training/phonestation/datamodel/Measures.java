@@ -8,7 +8,9 @@ public class Measures extends AbstractModel {
 	private String name;
 	@Column
 	private Double value;
-	private Service service;
+
+	@OneToMany(mappedBy = "price", fetch = FetchType.LAZY)
+	private Price price;
 
 	public String getName() {
 		return name;
@@ -26,12 +28,11 @@ public class Measures extends AbstractModel {
 		this.value = value;
 	}
 
-	public Service getService() {
-		return service;
+	public Price getPrice() {
+		return price;
 	}
 
-	public void setService(Service service) {
-		this.service = service;
+	public void setPrice(Price price) {
+		this.price = price;
 	}
-
 }

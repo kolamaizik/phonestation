@@ -8,13 +8,19 @@ import java.math.BigDecimal;
 
 public class Price extends AbstractModel {
 
+	@ManyToOne(targetEntity = Service.class, fetch = FetchType.LAZY)
 	private Service service;
+
 	@Column
 	private Date dateBegin;
+
 	@Column
 	private Date dateEnd;
+
 	@Column
 	private BigDecimal price;
+
+	@ManyToOne(targetEntity = Measures.class, fetch = FetchType.LAZY)
 	private Measures measures;
 
 	public Service getService() {

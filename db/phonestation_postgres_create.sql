@@ -6,8 +6,8 @@ CREATE DATABASE phonestation
        LC_COLLATE = 'Russian_Russia.1251'
        LC_CTYPE = 'Russian_Russia.1251'
        CONNECTION LIMIT = -1;
-
 --*/
+
 CREATE TABLE "user_profile" (
 	"id" int NOT NULL,
 	"first_name" character varying(100) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE "price" (
 
 
 
-CREATE TABLE "services_2_contract" (
+CREATE TABLE "service_2_contract" (
 	"id" serial NOT NULL,
 	"service_id" int NOT NULL,
 	"contract_id" int NOT NULL,
@@ -123,16 +123,16 @@ CREATE TABLE "contract" (
 
 ALTER TABLE "user_profile" ADD CONSTRAINT "user_profile_fk0" FOREIGN KEY ("id") REFERENCES "user"("id");
 
-ALTER TABLE "use_detail" ADD CONSTRAINT "use_detail_fk0" FOREIGN KEY ("service_2_contract_id") REFERENCES "services_2_contract"("id");
+ALTER TABLE "use_detail" ADD CONSTRAINT "use_detail_fk0" FOREIGN KEY ("service_2_contract_id") REFERENCES "service_2_contract"("id");
 
 ALTER TABLE "price" ADD CONSTRAINT "price_fk0" FOREIGN KEY ("service_id") REFERENCES "service"("id");
 ALTER TABLE "price" ADD CONSTRAINT "price_fk1" FOREIGN KEY ("measures_id") REFERENCES "measures"("id");
 
-ALTER TABLE "services_2_contract" ADD CONSTRAINT "services_2_contract_key0" UNIQUE("contract_id", "service_id");
-ALTER TABLE "services_2_contract" ADD CONSTRAINT "services_2_contract_fk0" FOREIGN KEY ("service_id") REFERENCES "service"("id");
-ALTER TABLE "services_2_contract" ADD CONSTRAINT "services_2_contract_fk1" FOREIGN KEY ("contract_id") REFERENCES "contract"("id");
+ALTER TABLE "service_2_contract" ADD CONSTRAINT "service_2_contract_key0" UNIQUE("contract_id", "service_id");
+ALTER TABLE "service_2_contract" ADD CONSTRAINT "service_2_contract_fk0" FOREIGN KEY ("service_id") REFERENCES "service"("id");
+ALTER TABLE "service_2_contract" ADD CONSTRAINT "service_2_contract_fk1" FOREIGN KEY ("contract_id") REFERENCES "contract"("id");
 
-ALTER TABLE "payment" ADD CONSTRAINT "payment_fk0" FOREIGN KEY ("service_2_contract_id") REFERENCES "services_2_contract"("id");
+ALTER TABLE "payment" ADD CONSTRAINT "payment_fk0" FOREIGN KEY ("service_2_contract_id") REFERENCES "service_2_contract"("id");
 
 ALTER TABLE "user" ADD CONSTRAINT "user_fk0" FOREIGN KEY ("id") REFERENCES "user_profile"("id");
 

@@ -9,9 +9,13 @@ import javax.persistence.Entity;
 public class Contract extends AbstractModel {
 
 	private UserProfile user;
+	@Column
 	private int phoneNumber;
+	@Column
 	private Date dateBegin;
+	@Column
 	private Date dateEnd;
+	@ManyToOne(targetEntity = Service.class, fetch = FetchType.LAZY)
 	private Set<Service> service;
 
 	public UserProfile getUser() {

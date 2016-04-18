@@ -9,13 +9,17 @@ public class Service extends AbstractModel {
 	
 	@Column
 	private String name;
+	
+	@JoinTable(name = "service_2_contract", joinColumns = { @JoinColumn(name = "service_id") }, inverseJoinColumns = { @JoinColumn(name = "contract_id") })
+    @ManyToMany(targetEntity = Contract.class, fetch = FetchType.LAZY)
 	private Set<Contract> contract;
+	
 	@Column
 	private Date dateEnd;
-
+	
 	public String getName() {
 		return name;
-	}
+	} 
 
 	public void setName(String name) {
 		this.name = name;
@@ -36,4 +40,21 @@ public class Service extends AbstractModel {
 	public void setDateBlocked(Date dateBlocked) {
 		this.dateEnd = dateBlocked;
 	}
+
+	public Date getDateEnd() {
+		return dateEnd;
+	}
+
+	public void setDateEnd(Date dateEnd) {
+		this.dateEnd = dateEnd;
+	}
+
+	public Price getPrice() {
+		return price;
+	}
+
+	public void setPrice(Price price) {
+		this.price = price;
+	}
+	
 }

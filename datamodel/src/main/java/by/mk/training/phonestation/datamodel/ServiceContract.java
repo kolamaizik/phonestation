@@ -2,6 +2,7 @@ package by.mk.training.phonestation.datamodel;
 
 import javax.persistence.Column;
 
+@Entity(name="services_2_contract")
 public class ServiceContract {
 
 	private Service service;
