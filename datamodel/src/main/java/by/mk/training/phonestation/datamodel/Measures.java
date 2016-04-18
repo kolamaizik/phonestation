@@ -1,6 +1,8 @@
 package by.mk.training.phonestation.datamodel;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 public class Measures extends AbstractModel {
 
