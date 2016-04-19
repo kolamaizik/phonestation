@@ -11,10 +11,10 @@ public class ServiceContract {
 	@ManyToOne(targetEntity = Contract.class, fetch = FetchType.LAZY)
 	private Contract contract;
 
-	@OneToMany(mappedBy = "service_2_contrakt_id", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "service_2_contrakt", fetch = FetchType.LAZY)
 	private UseDetail useDetail;
 
-	@OneToMany(mappedBy = "service_2_contrakt_id", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "service_2_contrakt", fetch = FetchType.LAZY)
 	private Payment payment;
 
 	@Column

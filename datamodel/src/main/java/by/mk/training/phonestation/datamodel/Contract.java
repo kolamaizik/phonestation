@@ -20,9 +20,8 @@ public class Contract extends AbstractModel {
 	@Column
 	private Date dateEnd;
 
-	@JoinTable(name = "service_2_contract", joinColumns = { @JoinColumn(name = "contract_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "service_id") })
-	@ManyToMany(targetEntity = Contract.class, fetch = FetchType.LAZY)
+	@JoinTable(name = "service_2_contract", joinColumns = { @JoinColumn(name = "contract_id") }, inverseJoinColumns = { @JoinColumn(name = "service_id") })
+	@ManyToMany(targetEntity = Service.class, fetch = FetchType.LAZY)
 	private Set<Service> service;
 
 	public UserProfile getUser() {

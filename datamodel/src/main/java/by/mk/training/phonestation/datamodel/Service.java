@@ -10,17 +10,16 @@ public class Service extends AbstractModel {
 
 	@Column
 	private String name;
-	// @JoinTable(name = "service_2_contract", joinColumns = { @JoinColumn(name
-	// = "service_id") }, inverseJoinColumns = {
-	// @JoinColumn(name = "contract_id") })
-	// @ManyToMany(targetEntity = Contract.class, fetch = FetchType.LAZY)
 
+	// @JoinTable(name = "service_2_contract", joinColumns = { @JoinColumn(name = "service_id") }, inverseJoinColumns = { @JoinColumn(name = "contract_id") })
+	// @ManyToMany(targetEntity = Contract.class, fetch = FetchType.LAZY)
 	@ManyToMany(mappedBy = "service", cascade = CascadeType.ALL)
 	private Set<Contract> contract;
 
 	@Column
 	private Date dateEnd;
 
+	@OneToMany(mappedBy = "price", fetch = FetchType.LAZY)
 	private Price price;
 
 	public String getName() {
