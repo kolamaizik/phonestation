@@ -2,6 +2,8 @@ package by.mk.training.phonestation.datamodel;
 
 import javax.persistence.Entity;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 import java.util.Set;
 
