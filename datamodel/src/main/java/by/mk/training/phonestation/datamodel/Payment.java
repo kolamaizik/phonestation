@@ -3,21 +3,31 @@ package by.mk.training.phonestation.datamodel;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Column;
 
+@Entity
 public class Payment extends AbstractModel {
 
 	@Column
 	private BigDecimal totalSum;
+
 	@Column
 	private Date datePayment;
+
 	@Column
 	private BigDecimal paySum;
+
 	@Column
 	private Date period;
-	private ServiceContract serviceContract;
+
 	@Column
 	private Boolean paid;
+
+	@ManyToOne(targetEntity = ServiceContract.class, fetch = FetchType.LAZY)
+	private ServiceContract serviceContractId;
 
 	public BigDecimal getTotalSum() {
 		return totalSum;
@@ -51,19 +61,19 @@ public class Payment extends AbstractModel {
 		this.period = period;
 	}
 
-	public ServiceContract getServiceContract() {
-		return serviceContract;
-	}
-
-	public void setServiceContract(ServiceContract serviceContract) {
-		this.serviceContract = serviceContract;
-	}
-
 	public Boolean getPaid() {
 		return paid;
 	}
 
 	public void setPaid(Boolean paid) {
 		this.paid = paid;
+	}
+
+	public ServiceContract getServiceContractId() {
+		return serviceContractId;
+	}
+
+	public void setServiceContractId(ServiceContract serviceContractId) {
+		this.serviceContractId = serviceContractId;
 	}
 }

@@ -1,12 +1,9 @@
 package by.mk.training.phonestation.datamodel;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
+@Entity
 public class User extends AbstractModel {
-
-	private UserProfile profile;
 
 	@Column
 	private String email;
@@ -17,14 +14,6 @@ public class User extends AbstractModel {
 	@Column
 	@Enumerated(EnumType.ORDINAL)
 	private UserRole role;
-
-	public UserProfile getProfile() {
-		return profile;
-	}
-
-	public void setProfile(UserProfile profile) {
-		this.profile = profile;
-	}
 
 	public String getEmail() {
 		return email;

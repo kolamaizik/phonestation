@@ -3,26 +3,29 @@ package by.mk.training.phonestation.datamodel;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
+@Entity
 public class Service extends AbstractModel {
-	
+
 	@Column
 	private String name;
-	
-	@JoinTable(name = "service_2_contract", joinColumns = {@JoinColumn(name = "service_id") }, inverseJoinColumns = { @JoinColumn(name = "contract_id") })
-    @ManyToMany(targetEntity = Contract.class, fetch = FetchType.LAZY)
+	// @JoinTable(name = "service_2_contract", joinColumns = { @JoinColumn(name
+	// = "service_id") }, inverseJoinColumns = {
+	// @JoinColumn(name = "contract_id") })
+	// @ManyToMany(targetEntity = Contract.class, fetch = FetchType.LAZY)
+
+	@ManyToMany(mappedBy = "service", cascade = CascadeType.ALL)
 	private Set<Contract> contract;
-	
+
 	@Column
 	private Date dateEnd;
-	
+
+	private Price price;
+
 	public String getName() {
 		return name;
-	} 
+	}
 
 	public void setName(String name) {
 		this.name = name;
@@ -34,14 +37,6 @@ public class Service extends AbstractModel {
 
 	public void setContract(Set<Contract> contract) {
 		this.contract = contract;
-	}
-
-	public Date getDateBlocked() {
-		return dateEnd;
-	}
-
-	public void setDateBlocked(Date dateBlocked) {
-		this.dateEnd = dateBlocked;
 	}
 
 	public Date getDateEnd() {
@@ -59,5 +54,4 @@ public class Service extends AbstractModel {
 	public void setPrice(Price price) {
 		this.price = price;
 	}
-	
 }

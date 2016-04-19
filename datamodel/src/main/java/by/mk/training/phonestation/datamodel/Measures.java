@@ -1,18 +1,15 @@
 package by.mk.training.phonestation.datamodel;
 
+import javax.persistence.Entity;
 import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 
+@Entity
 public class Measures extends AbstractModel {
 
 	@Column
 	private String name;
 	@Column
 	private Double value;
-
-	@OneToMany(mappedBy = "price", fetch = FetchType.LAZY)
-	private Price price;
 
 	public String getName() {
 		return name;
@@ -28,13 +25,5 @@ public class Measures extends AbstractModel {
 
 	public void setValue(Double value) {
 		this.value = value;
-	}
-
-	public Price getPrice() {
-		return price;
-	}
-
-	public void setPrice(Price price) {
-		this.price = price;
 	}
 }

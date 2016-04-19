@@ -1,13 +1,15 @@
 package by.mk.training.phonestation.datamodel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity(name = "services_2_contract")
 public class ServiceContract {
+
+	@ManyToOne(targetEntity = Service.class, fetch = FetchType.LAZY)
+	private Service service;
+	
+	@ManyToOne(targetEntity = Contract.class, fetch = FetchType.LAZY)
+	private Contract contract;
 
 	@OneToMany(mappedBy = "service_2_contrakt_id", fetch = FetchType.LAZY)
 	private UseDetail useDetail;

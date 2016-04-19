@@ -1,24 +1,28 @@
 package by.mk.training.phonestation.datamodel;
 
- import java.util.Date;
+import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Contract extends AbstractModel {
 
+	@ManyToOne(targetEntity = UserProfile.class, fetch = FetchType.LAZY)
 	private UserProfile user;
+
 	@Column
 	private int phoneNumber;
+
 	@Column
 	private Date dateBegin;
+
 	@Column
 	private Date dateEnd;
-	@ManyToOne(targetEntity = Service.class, fetch = FetchType.LAZY)
+
+	@JoinTable(name = "service_2_contract", joinColumns = { @JoinColumn(name = "contract_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "service_id") })
+	@ManyToMany(targetEntity = Contract.class, fetch = FetchType.LAZY)
 	private Set<Service> service;
 
 	public UserProfile getUser() {
