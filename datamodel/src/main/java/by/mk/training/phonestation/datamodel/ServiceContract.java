@@ -9,19 +9,17 @@ import javax.persistence.OneToMany;
 @Entity(name = "services_2_contract")
 public class ServiceContract {
 
-<<<<<<< HEAD
 	@ManyToOne(targetEntity = Service.class, fetch = FetchType.LAZY)
 	private Service service;
 	
 	@ManyToOne(targetEntity = Contract.class, fetch = FetchType.LAZY)
 	private Contract contract;
-=======
+
 	@OneToMany(mappedBy = "service_2_contrakt_id", fetch = FetchType.LAZY)
 	private UseDetail useDetail;
 
 	@OneToMany(mappedBy = "service_2_contrakt_id", fetch = FetchType.LAZY)
 	private Payment payment;
->>>>>>> 4feecf21acfd5eee5a9c481b88273e773dab5a83
 
 	@Column
 	private Byte blocked;
