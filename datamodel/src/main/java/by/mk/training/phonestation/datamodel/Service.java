@@ -4,13 +4,16 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 public class Service extends AbstractModel {
 	
 	@Column
 	private String name;
 	
-	@JoinTable(name = "service_2_contract", joinColumns = { @JoinColumn(name = "service_id") }, inverseJoinColumns = { @JoinColumn(name = "contract_id") })
+	@JoinTable(name = "service_2_contract", joinColumns = {@JoinColumn(name = "service_id") }, inverseJoinColumns = { @JoinColumn(name = "contract_id") })
     @ManyToMany(targetEntity = Contract.class, fetch = FetchType.LAZY)
 	private Set<Contract> contract;
 	
