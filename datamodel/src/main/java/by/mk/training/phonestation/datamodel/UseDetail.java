@@ -3,14 +3,19 @@ package by.mk.training.phonestation.datamodel;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.Column;
 
+@Entity
 public class UseDetail extends AbstractModel {
 
 	@Column
 	private Double quantity;
+
 	@Column
 	private Date dateUseService;
+
+	@ManyToOne(targetEntity = ServiceContract.class, fetch = FetchType.LAZY)
 	private ServiceContract serviceContract;
 
 	public Double getQuantity() {

@@ -1,20 +1,30 @@
 package by.mk.training.phonestation.datamodel;
 
 import java.util.Date;
+import javax.persistence.Entity;
 
+@Entity
 import javax.persistence.Column;
 
 public class UserProfile extends AbstractModel {
 
+	@MapsId
+    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinColumn(nullable = false, updatable = false, name = "id")
 	private User user;
+	
 	@Column
 	private String firstName;
+	
 	@Column
 	private String lastName;
+	
 	@Column
 	private String address;
+	
 	@Column
 	private int blocked;
+	
 	@Column
 	private Date created;
 

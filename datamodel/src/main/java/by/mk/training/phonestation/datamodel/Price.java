@@ -2,10 +2,12 @@ package by.mk.training.phonestation.datamodel;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.Column;
 
 import java.math.BigDecimal;
 
+@Entity
 public class Price extends AbstractModel {
 
 	@ManyToOne(targetEntity = Service.class, fetch = FetchType.LAZY)

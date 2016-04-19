@@ -2,12 +2,15 @@ package by.mk.training.phonestation.datamodel;
 
 import javax.persistence.Column;
 
-@Entity(name="services_2_contract")
+@Entity(name = "services_2_contract")
 public class ServiceContract {
 
+	@ManyToOne(targetEntity = Service.class, fetch = FetchType.LAZY)
 	private Service service;
-	@Column
+	
+	@ManyToOne(targetEntity = Contract.class, fetch = FetchType.LAZY)
 	private Contract contract;
+
 	@Column
 	private Byte blocked;
 
