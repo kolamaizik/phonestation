@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import by.mk.training.phonestation.dataaccess.UserProfileDao;
 import by.mk.training.phonestation.dataaccess.impl.AbstractDaoImpl;
+import by.mk.training.phonestation.service.impl.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })

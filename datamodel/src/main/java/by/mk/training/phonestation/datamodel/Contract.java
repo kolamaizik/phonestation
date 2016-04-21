@@ -5,11 +5,9 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Column;
-import javax.persistence.JoinColumn;
 
 @Entity
 public class Contract extends AbstractModel {
@@ -26,10 +24,8 @@ public class Contract extends AbstractModel {
 	@Column
 	private Date dateEnd;
 
-	@JoinTable(name = "service_2_contract", joinColumns = { @JoinColumn(name = "contract_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "service_id") })
-	@ManyToMany(targetEntity = Contract.class, fetch = FetchType.LAZY)
-	private Set<Service> service;
+	@OneToMany(mappedBy = "contract", fetch = FetchType.LAZY)
+	private Set<ServiceContract> serviceContract;
 
 	public UserProfile getUser() {
 		return user;
@@ -63,11 +59,11 @@ public class Contract extends AbstractModel {
 		this.dateEnd = dateEnd;
 	}
 
-	public Set<Service> getService() {
-		return service;
+	public Set<ServiceContract> getServiceContract() {
+		return serviceContract;
 	}
 
-	public void setService(Set<Service> service) {
-		this.service = service;
+	public void setServiceContract(Set<ServiceContract> serviceContract) {
+		this.serviceContract = serviceContract;
 	}
 }

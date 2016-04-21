@@ -1,8 +1,11 @@
 package by.mk.training.phonestation.datamodel;
 
 import java.util.Date;
+import java.util.Set;
+
 import javax.persistence.*;
 
+@Entity
 public class UserProfile extends AbstractModel {
 
 	@MapsId
@@ -25,8 +28,8 @@ public class UserProfile extends AbstractModel {
 	@Column
 	private Date created;
 	
-	@OneToMany(mappedBy = "contrakt_id", fetch = FetchType.LAZY)
-	private Contract contract;
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
+	private Set<Contract> contract;
 
 	public User getUser() {
 		return user;

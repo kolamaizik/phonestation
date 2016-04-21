@@ -27,7 +27,7 @@ public class Payment extends AbstractModel {
 	private Boolean paid;
 
 	@ManyToOne(targetEntity = ServiceContract.class, fetch = FetchType.LAZY)
-	private ServiceContract serviceContractId;
+	private ServiceContract serviceContract;
 
 	public BigDecimal getTotalSum() {
 		return totalSum;
@@ -69,11 +69,11 @@ public class Payment extends AbstractModel {
 		this.paid = paid;
 	}
 
-	public ServiceContract getServiceContractId() {
-		return serviceContractId;
+	public ServiceContract getServiceContract() {
+		return serviceContract;
 	}
 
-	public void setServiceContractId(ServiceContract serviceContractId) {
-		this.serviceContractId = serviceContractId;
+	public void setServiceContract(ServiceContract serviceContract) {
+		this.serviceContract = serviceContract;
 	}
 }
