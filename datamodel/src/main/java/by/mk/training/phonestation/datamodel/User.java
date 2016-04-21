@@ -1,7 +1,5 @@
 package by.mk.training.phonestation.datamodel;
 
-import java.util.Set;
-
 import javax.persistence.*;
 
 @Entity
@@ -16,7 +14,7 @@ public class User extends AbstractModel {
 	@Column
 	@Enumerated(EnumType.ORDINAL)
 	private UserRole role;
-	
+
 	public String getEmail() {
 		return email;
 	}
