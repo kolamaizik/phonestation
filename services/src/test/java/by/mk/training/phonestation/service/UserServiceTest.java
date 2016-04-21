@@ -13,17 +13,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import by.mk.training.phonestation.dataaccess.UserProfileDao;
 import by.mk.training.phonestation.dataaccess.impl.AbstractDaoImpl;
-import by.mk.training.phonestation.service.impl.UserService;
+import by.mk.training.phonestation.service.impl.UserServiceServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })
 public class UserServiceTest {
 
     @Inject
-    private UserService userService;
+    private UserServiceServiceImpl userService;
 
     @Inject
-    private UserProfileDao userProfileDao;
+    private UserProfileService userProfileDao;
 
     @Test
     public void test() {
