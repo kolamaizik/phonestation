@@ -9,3 +9,5 @@ datamodel/target/
 services/.settings/
 .settings/org.eclipse.m2e.core.prefs
 *.classpath
+dataaccess/.settings/
+dataaccess/target/

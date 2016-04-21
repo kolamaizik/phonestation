@@ -3,7 +3,13 @@ package by.mk.training.phonestation.datamodel;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Contract extends AbstractModel {

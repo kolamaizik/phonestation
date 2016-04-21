@@ -24,6 +24,9 @@ public class UserProfile extends AbstractModel {
 	
 	@Column
 	private Date created;
+	
+	@OneToMany(mappedBy = "contrakt_id", fetch = FetchType.LAZY)
+	private Contract contract;
 
 	public User getUser() {
 		return user;
