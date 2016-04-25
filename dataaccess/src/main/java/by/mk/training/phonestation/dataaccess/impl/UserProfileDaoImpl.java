@@ -6,7 +6,11 @@ import by.mk.training.phonestation.dataaccess.UserProfileDao;
 import by.mk.training.phonestation.datamodel.UserProfile;
 
 @Repository
-public class UserProfileDaoImpl extends AbstractDaoImpl implements UserProfileDao {
+public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> implements UserProfileDao {
+
+	protected UserProfileDaoImpl(Class<UserProfile> entityClass) {
+		super(entityClass);
+	}
 
 	@Override
 	public UserProfile get(Long id) {
