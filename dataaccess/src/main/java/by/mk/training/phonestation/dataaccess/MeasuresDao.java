@@ -1,5 +1,7 @@
 package by.mk.training.phonestation.dataaccess;
 
-public interface MeasuresDao {
+import by.mk.training.phonestation.datamodel.Measures;
+
+public interface MeasuresDao extends AbstractDao<Measures, Long> {
 
 }

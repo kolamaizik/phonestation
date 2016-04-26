@@ -1,7 +1,6 @@
 package by.mk.training.phonestation.datamodel;
 
-import java.util.Set;
-
+import java.util.List;
 import javax.persistence.*;
 
 @Entity(name = "services_2_contract")
@@ -14,10 +13,10 @@ public class ServiceContract extends AbstractModel {
 	private Contract contract;
 
 	@OneToMany(mappedBy = "serviceContract", fetch = FetchType.LAZY)
-	private Set<UseDetail> useDetail;
+	private List<UseDetail> useDetail;
 
 	@OneToMany(mappedBy = "serviceContract", fetch = FetchType.LAZY)
-	private Set<Payment> payment;
+	private List<Payment> payment;
 
 	@Column
 	private Byte blocked;

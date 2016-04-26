@@ -1,7 +1,7 @@
 package by.mk.training.phonestation.datamodel;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -12,7 +12,7 @@ public class Service extends AbstractModel {
 	private String name;
 
 	@OneToMany(mappedBy = "service", fetch = FetchType.LAZY)
-	private Set<ServiceContract> serviceContract;
+	private List<ServiceContract> serviceContract;
 
 	@Column
 	private Date dateEnd;
@@ -27,11 +27,11 @@ public class Service extends AbstractModel {
 		this.name = name;
 	}
 
-	public Set<ServiceContract> getServiceContract() {
+	public List<ServiceContract> getServiceContract() {
 		return serviceContract;
 	}
 
-	public void setServiceContract(Set<ServiceContract> serviceContract) {
+	public void setServiceContract(List<ServiceContract> serviceContract) {
 		this.serviceContract = serviceContract;
 	}
 

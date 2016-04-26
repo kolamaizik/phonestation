@@ -13,17 +13,19 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import by.mk.training.phonestation.dataaccess.UserProfileDao;
 import by.mk.training.phonestation.dataaccess.impl.AbstractDaoImpl;
-import by.mk.training.phonestation.service.impl.UserServiceServiceImpl;
+import by.mk.training.phonestation.datamodel.User;
+import by.mk.training.phonestation.datamodel.UserProfile;
+import by.mk.training.phonestation.datamodel.UserRole;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })
 public class UserServiceTest {
 
     @Inject
-    private UserServiceServiceImpl userService;
+    private UserService userService;
 
     @Inject
-    private UserProfileService userProfileDao;
+    private UserProfileDao userProfileDao;
 
     @Test
     public void test() {
@@ -37,6 +39,37 @@ public class UserServiceTest {
         EntityManager em = (EntityManager) f.get(userProfileDao);
 
         Assert.assertNotNull(em);
+    }
+
+    @Test
+    public void testRegistration() {
+        UserProfile profile = new UserProfile();
+        User user = new User();
+
+        profile.setFirstName("testFName");
+        profile.setLastName("testLName");
+
+        user.setEmail(System.currentTimeMillis() + "mail@test.by");
+        user.setPassword("pswd");
+        user.setRole(UserRole.admin);
+        userService.register(profile, user);
+
+        UserProfile registredProfile = userService.getProfile(profile.getId());
+        User registredUser = userService.getUser(user.getId());
+
+        Assert.assertNotNull(registredProfile);
+        Assert.assertNotNull(registredUser);
+
+        String updatedFName = "updatedName";
+        profile.setFirstName(updatedFName);
+        userService.update(profile);
+
+        Assert.assertEquals(updatedFName, userService.getProfile(profile.getId()).getFirstName());
+
+        userService.delete(profile.getId());
+
+        Assert.assertNull(userService.getProfile(profile.getId()));
+        Assert.assertNull(userService.getUser(user.getId()));
     }
 
 }

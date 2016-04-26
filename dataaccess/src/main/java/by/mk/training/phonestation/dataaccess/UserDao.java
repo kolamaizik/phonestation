@@ -1,5 +1,7 @@
 package by.mk.training.phonestation.dataaccess;
 
-public interface UserDao {
+import by.mk.training.phonestation.datamodel.User;
+
+public interface UserDao extends AbstractDao<User, Long> {
 
 }
