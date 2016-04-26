@@ -15,36 +15,39 @@ import by.mk.training.phonestation.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Inject
-    private UserProfileDao userProfileDao;
+	@Inject
+	private UserProfileDao userProfileDao;
 
-    @Inject
-    private UserDao userDao;
+	@Inject
+	private UserDao userDao;
 
 	@Override
 	public void register(UserProfile profile, User user) {
 		userDao.insert(user);
-        profile.setUser(user);
+		profile.setUser(user);
 
-        profile.setCreated(new Date());
-        userProfileDao.insert(profile);
+		profile.setCreated(new Date());
+		userProfileDao.insert(profile);
 	}
 
 	@Override
 	public UserProfile getProfile(Long id) {
-		return null;
+		return userProfileDao.get(id);
 	}
 
 	@Override
 	public User getUser(Long id) {
-		return null;
+		return userDao.get(id);
 	}
 
 	@Override
 	public void update(UserProfile profile) {
+		userProfileDao.update(profile);
 	}
 
 	@Override
 	public void delete(Long id) {
+		userProfileDao.delete(id);
+		userDao.delete(id);
 	}
 }

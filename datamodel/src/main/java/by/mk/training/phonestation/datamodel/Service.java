@@ -17,7 +17,8 @@ public class Service extends AbstractModel {
 	@Column
 	private Date dateEnd;
 
-	private Price price;
+	@OneToMany(mappedBy = "service", fetch = FetchType.LAZY)
+	private List<Price> price;
 
 	public String getName() {
 		return name;
@@ -43,11 +44,11 @@ public class Service extends AbstractModel {
 		this.dateEnd = dateEnd;
 	}
 
-	public Price getPrice() {
+	public List<Price> getPrice() {
 		return price;
 	}
 
-	public void setPrice(Price price) {
+	public void setPrice(List<Price> price) {
 		this.price = price;
 	}
 }

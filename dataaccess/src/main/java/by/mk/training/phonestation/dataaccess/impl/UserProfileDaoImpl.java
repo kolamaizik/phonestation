@@ -11,15 +11,4 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
 	protected UserProfileDaoImpl(Class<UserProfile> entityClass) {
 		super(entityClass);
 	}
-
-	@Override
-	public UserProfile get(Long id) {
-		return null;
-	}
-
-	@Override
-	public UserProfile save() {
-		return null;
-	}
-
 }
