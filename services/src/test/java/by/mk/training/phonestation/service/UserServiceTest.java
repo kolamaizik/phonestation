@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import by.mk.training.phonestation.dataaccess.UserDao;
 import by.mk.training.phonestation.dataaccess.UserProfileDao;
 import by.mk.training.phonestation.dataaccess.impl.AbstractDaoImpl;
 import by.mk.training.phonestation.datamodel.User;
@@ -25,7 +26,7 @@ public class UserServiceTest {
     private UserService userService;
 
     @Inject
-    private UserProfileDao userProfileDao;
+    private UserDao userDao;
 
     @Test
     public void test() {
@@ -36,11 +37,11 @@ public class UserServiceTest {
     public void testEntityManagerInitialization() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
         Field f = AbstractDaoImpl.class.getDeclaredField("entityManager");
         f.setAccessible(true);
-        EntityManager em = (EntityManager) f.get(userProfileDao);
+        EntityManager em = (EntityManager) f.get(userDao);
 
         Assert.assertNotNull(em);
     }
-/*
+//*
     @Test
     public void registration() {
         UserProfile profile = new UserProfile();

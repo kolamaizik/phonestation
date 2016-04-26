@@ -22,10 +22,9 @@
 
 	<bean id="dataSource"
 		class="by.mk.training.phonestation.datamodel.util.SchemaNameAwareBasicDataSource"
-		destroy-method="close" 
-		p:driverClassName="org.postgresql.Driver"
-		p:url="jdbc:postgresql://localhost:5432/phonestation" 
-		p:username="postgres" 
+		destroy-method="close" p:driverClassName="org.postgresql.Driver"
+		p:url="jdbc:postgresql://localhost:5432/phonestation"
+		p:username="postgres"
 		p:password="postgres"
 		p:schema="public" />
 
@@ -33,9 +32,8 @@
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
 		p:dataSource-ref="dataSource" />
 
-<!-- 	<tx:annotation-driven />
+	<tx:annotation-driven />
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
 		p:entityManagerFactory-ref="entityManagerFactory" />
- -->
 </beans>
