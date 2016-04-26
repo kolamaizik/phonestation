@@ -4,7 +4,7 @@ public class Test {
 
 	public static void main(String[] args) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		UserServiceRegistration us = new UserServiceRegistration();
-		//us.testEntityManagerInitialization();
+		us.testEntityManagerInitialization();
 		us.testRegistration();
 		System.out.println("1");
 	}
