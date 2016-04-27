@@ -66,11 +66,10 @@ public class UserServiceTest {
         userService.update(profile);
 
         Assert.assertEquals(updatedFName, userService.getProfile(profile.getId()).getFirstName());
-/*
+
         userService.delete(profile.getId());
 
         Assert.assertNull(userService.getProfile(profile.getId()));
         Assert.assertNull(userService.getUser(user.getId()));
-*/
     }
 }
