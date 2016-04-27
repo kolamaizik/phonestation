@@ -11,7 +11,7 @@ public class UserProfile extends AbstractModel {
 	@MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinColumn(nullable = false, updatable = false, name = "id")
-	private User user;
+	private UserCredentials user;
 	
 	@Column
 	private String firstName;
@@ -23,7 +23,7 @@ public class UserProfile extends AbstractModel {
 	private String address;
 	
 	@Column
-	private int blocked;
+	private boolean blocked;
 	
 	@Column
 	private Date created;
@@ -31,11 +31,11 @@ public class UserProfile extends AbstractModel {
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
 	private List<Contract> contract;
 
-	public User getUser() {
+	public UserCredentials getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserCredentials user) {
 		this.user = user;
 	}
 
@@ -63,12 +63,20 @@ public class UserProfile extends AbstractModel {
 		this.address = address;
 	}
 
-	public int getBlocked() {
+	public boolean isBlocked() {
 		return blocked;
 	}
 
-	public void setBlocked(int blocked) {
+	public void setBlocked(boolean blocked) {
 		this.blocked = blocked;
+	}
+
+	public List<Contract> getContract() {
+		return contract;
+	}
+
+	public void setContract(List<Contract> contract) {
+		this.contract = contract;
 	}
 
 	public Date getCreated() {

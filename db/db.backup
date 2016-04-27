@@ -1,0 +1,702 @@
+/*
+CREATE DATABASE phonestation
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'Russian_Russia.1251'
+       LC_CTYPE = 'Russian_Russia.1251'
+       CONNECTION LIMIT = -1;
+*/
+
+/*
+CREATE SCHEMA public
+  AUTHORIZATION postgres;
+
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO public;
+COMMENT ON SCHEMA public
+  IS 'standard public schema';
+*/  
+
+SET search_path = public;
+--SET search_path = test;
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 198 (class 1259 OID 17918)
+-- Name: contract; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE contract (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    phone_number integer NOT NULL,
+    date_begin date NOT NULL,
+    date_end date
+);
+
+
+--
+-- TOC entry 197 (class 1259 OID 17916)
+-- Name: contract_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE contract_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 2210 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: contract_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE contract_id_seq OWNED BY contract.id;
+
+
+--
+-- TOC entry 196 (class 1259 OID 17907)
+-- Name: measures; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE measures (
+    id integer NOT NULL,
+    name character varying(100),
+    value numeric NOT NULL
+);
+
+
+--
+-- TOC entry 195 (class 1259 OID 17905)
+-- Name: measures_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE measures_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 2211 (class 0 OID 0)
+-- Dependencies: 195
+-- Name: measures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE measures_id_seq OWNED BY measures.id;
+
+
+--
+-- TOC entry 192 (class 1259 OID 17886)
+-- Name: payment; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE payment (
+    id integer NOT NULL,
+    service_2_contract_id integer NOT NULL,
+    period date NOT NULL,
+    total_sum numeric NOT NULL,
+    date_payment date,
+    paid bit(1)
+);
+
+
+--
+-- TOC entry 191 (class 1259 OID 17884)
+-- Name: payment_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE payment_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 2212 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: payment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE payment_id_seq OWNED BY payment.id;
+
+
+--
+-- TOC entry 186 (class 1259 OID 17858)
+-- Name: price; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE price (
+    id integer NOT NULL,
+    service_id integer NOT NULL,
+    date_begin date NOT NULL,
+    date_end date,
+    price numeric NOT NULL,
+    measures_id integer
+);
+
+
+--
+-- TOC entry 185 (class 1259 OID 17856)
+-- Name: price_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE price_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 2213 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: price_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE price_id_seq OWNED BY price.id;
+
+
+--
+-- TOC entry 190 (class 1259 OID 17878)
+-- Name: service; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE service (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    lock_date date
+);
+
+
+--
+-- TOC entry 188 (class 1259 OID 17869)
+-- Name: service_2_contract; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE service_2_contract (
+    id integer NOT NULL,
+    service_id integer NOT NULL,
+    contract_id integer NOT NULL,
+    blocked bit(1) DEFAULT B'0'::"bit"
+);
+
+
+--
+-- TOC entry 187 (class 1259 OID 17867)
+-- Name: service_2_contract_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE service_2_contract_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 2214 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: service_2_contract_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE service_2_contract_id_seq OWNED BY service_2_contract.id;
+
+
+--
+-- TOC entry 189 (class 1259 OID 17876)
+-- Name: service_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE service_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 2215 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: service_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE service_id_seq OWNED BY service.id;
+
+
+--
+-- TOC entry 184 (class 1259 OID 17847)
+-- Name: use_detail; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE use_detail (
+    id integer NOT NULL,
+    service_2_contract_id integer NOT NULL,
+    quantity numeric NOT NULL,
+    date_use_service timestamp without time zone NOT NULL
+);
+
+
+--
+-- TOC entry 183 (class 1259 OID 17845)
+-- Name: use_detail_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE use_detail_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 2216 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: use_detail_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE use_detail_id_seq OWNED BY use_detail.id;
+
+
+--
+-- TOC entry 194 (class 1259 OID 17897)
+-- Name: user; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE user_credentials (
+    id integer NOT NULL,
+    email character varying(100) NOT NULL,
+    password character varying(100) NOT NULL,
+    role integer NOT NULL
+);
+
+
+--
+-- TOC entry 193 (class 1259 OID 17895)
+-- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 2217 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE user_id_seq OWNED BY user_credentials.id;
+
+
+--
+-- TOC entry 182 (class 1259 OID 17839)
+-- Name: user_profile; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE user_profile (
+    id integer NOT NULL,
+    first_name character varying(100) NOT NULL,
+    last_name character varying(100) NOT NULL,
+    address character varying(255) NOT NULL,
+    blocked boolean DEFAULT false,
+    lock_date date,
+    created timestamp without time zone NOT NULL
+);
+
+
+--
+-- TOC entry 2041 (class 2604 OID 17921)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY contract ALTER COLUMN id SET DEFAULT nextval('contract_id_seq'::regclass);
+
+
+--
+-- TOC entry 2040 (class 2604 OID 17910)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY measures ALTER COLUMN id SET DEFAULT nextval('measures_id_seq'::regclass);
+
+
+--
+-- TOC entry 2038 (class 2604 OID 17889)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY payment ALTER COLUMN id SET DEFAULT nextval('payment_id_seq'::regclass);
+
+
+--
+-- TOC entry 2034 (class 2604 OID 17861)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY price ALTER COLUMN id SET DEFAULT nextval('price_id_seq'::regclass);
+
+
+--
+-- TOC entry 2037 (class 2604 OID 17881)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY service ALTER COLUMN id SET DEFAULT nextval('service_id_seq'::regclass);
+
+
+--
+-- TOC entry 2035 (class 2604 OID 17872)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY service_2_contract ALTER COLUMN id SET DEFAULT nextval('service_2_contract_id_seq'::regclass);
+
+
+--
+-- TOC entry 2033 (class 2604 OID 17850)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY use_detail ALTER COLUMN id SET DEFAULT nextval('use_detail_id_seq'::regclass);
+
+
+--
+-- TOC entry 2039 (class 2604 OID 17900)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_credentials ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regclass);
+
+
+--
+-- TOC entry 2204 (class 0 OID 17918)
+-- Dependencies: 198
+-- Data for Name: contract; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- TOC entry 2218 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: contract_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('contract_id_seq', 1, false);
+
+
+--
+-- TOC entry 2202 (class 0 OID 17907)
+-- Dependencies: 196
+-- Data for Name: measures; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- TOC entry 2219 (class 0 OID 0)
+-- Dependencies: 195
+-- Name: measures_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('measures_id_seq', 1, false);
+
+
+--
+-- TOC entry 2198 (class 0 OID 17886)
+-- Dependencies: 192
+-- Data for Name: payment; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- TOC entry 2220 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: payment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('payment_id_seq', 1, false);
+
+
+--
+-- TOC entry 2192 (class 0 OID 17858)
+-- Dependencies: 186
+-- Data for Name: price; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- TOC entry 2221 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: price_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('price_id_seq', 1, false);
+
+
+--
+-- TOC entry 2196 (class 0 OID 17878)
+-- Dependencies: 190
+-- Data for Name: service; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- TOC entry 2194 (class 0 OID 17869)
+-- Dependencies: 188
+-- Data for Name: service_2_contract; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- TOC entry 2222 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: service_2_contract_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('service_2_contract_id_seq', 1, false);
+
+
+--
+-- TOC entry 2223 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: service_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('service_id_seq', 1, false);
+
+
+--
+-- TOC entry 2190 (class 0 OID 17847)
+-- Dependencies: 184
+-- Data for Name: use_detail; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- TOC entry 2224 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: use_detail_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('use_detail_id_seq', 1, false);
+
+
+--
+-- TOC entry 2225 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('user_id_seq', 1, true);
+
+
+--
+-- TOC entry 2188 (class 0 OID 17839)
+-- Dependencies: 182
+-- Data for Name: user_profile; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- TOC entry 2063 (class 2606 OID 17925)
+-- Name: contract_phone_number_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY contract
+    ADD CONSTRAINT contract_phone_number_key UNIQUE (phone_number);
+
+
+--
+-- TOC entry 2065 (class 2606 OID 17923)
+-- Name: contract_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY contract
+    ADD CONSTRAINT contract_pk PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2061 (class 2606 OID 17915)
+-- Name: measures_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY measures
+    ADD CONSTRAINT measures_pk PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2055 (class 2606 OID 17894)
+-- Name: payment_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY payment
+    ADD CONSTRAINT payment_pk PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2047 (class 2606 OID 17866)
+-- Name: price_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY price
+    ADD CONSTRAINT price_pk PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2049 (class 2606 OID 17875)
+-- Name: service_2_contract_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY service_2_contract
+    ADD CONSTRAINT service_2_contract_pk PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2053 (class 2606 OID 17883)
+-- Name: service_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY service
+    ADD CONSTRAINT service_pk PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2051 (class 2606 OID 17957)
+-- Name: services_2_contract_key0; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY service_2_contract
+    ADD CONSTRAINT services_2_contract_key0 UNIQUE (contract_id, service_id);
+
+
+--
+-- TOC entry 2045 (class 2606 OID 17855)
+-- Name: use_detail_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY use_detail
+    ADD CONSTRAINT use_detail_pk PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2057 (class 2606 OID 17904)
+-- Name: user_email_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_credentials
+    ADD CONSTRAINT user_email_key UNIQUE (email);
+
+
+--
+-- TOC entry 2059 (class 2606 OID 17902)
+-- Name: user_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_credentials
+    ADD CONSTRAINT user_pk PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2043 (class 2606 OID 17844)
+-- Name: user_profile_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_profile
+    ADD CONSTRAINT user_profile_pk PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2073 (class 2606 OID 17963)
+-- Name: contract_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY contract
+    ADD CONSTRAINT contract_fk0 FOREIGN KEY (user_id) REFERENCES user_profile(id);
+
+
+--
+-- TOC entry 2072 (class 2606 OID 17958)
+-- Name: payment_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY payment
+    ADD CONSTRAINT payment_fk0 FOREIGN KEY (service_2_contract_id) REFERENCES service_2_contract(id);
+
+
+--
+-- TOC entry 2068 (class 2606 OID 17936)
+-- Name: price_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY price
+    ADD CONSTRAINT price_fk0 FOREIGN KEY (service_id) REFERENCES service(id);
+
+
+--
+-- TOC entry 2069 (class 2606 OID 17941)
+-- Name: price_fk1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY price
+    ADD CONSTRAINT price_fk1 FOREIGN KEY (measures_id) REFERENCES measures(id);
+
+
+--
+-- TOC entry 2070 (class 2606 OID 17946)
+-- Name: service_2_contract_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY service_2_contract
+    ADD CONSTRAINT service_2_contract_fk0 FOREIGN KEY (service_id) REFERENCES service(id);
+
+
+--
+-- TOC entry 2071 (class 2606 OID 17951)
+-- Name: service_2_contract_fk1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY service_2_contract
+    ADD CONSTRAINT service_2_contract_fk1 FOREIGN KEY (contract_id) REFERENCES contract(id);
+
+
+--
+-- TOC entry 2067 (class 2606 OID 17931)
+-- Name: use_detail_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY use_detail
+    ADD CONSTRAINT use_detail_fk0 FOREIGN KEY (service_2_contract_id) REFERENCES service_2_contract(id);
+
+
+--
+-- TOC entry 2066 (class 2606 OID 17926)
+-- Name: user_profile_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_profile
+    ADD CONSTRAINT user_profile_fk0 FOREIGN KEY (id) REFERENCES user_credentials(id);

@@ -6,7 +6,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Entity
-public class User extends AbstractModel {
+public class UserCredentials extends AbstractModel {
 
 	@Column
 	private String email;

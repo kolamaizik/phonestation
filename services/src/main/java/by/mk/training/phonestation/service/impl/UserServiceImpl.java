@@ -6,9 +6,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import by.mk.training.phonestation.dataaccess.UserDao;
+import by.mk.training.phonestation.dataaccess.UserCredentialsDao;
 import by.mk.training.phonestation.dataaccess.UserProfileDao;
-import by.mk.training.phonestation.datamodel.User;
+import by.mk.training.phonestation.datamodel.UserCredentials;
 import by.mk.training.phonestation.datamodel.UserProfile;
 import by.mk.training.phonestation.service.UserService;
 
@@ -19,10 +19,10 @@ public class UserServiceImpl implements UserService {
 	private UserProfileDao userProfileDao;
 
 	@Inject
-	private UserDao userDao;
+	private UserCredentialsDao userDao;
 
 	@Override
-	public void register(UserProfile profile, User user) {
+	public void register(UserProfile profile, UserCredentials user) {
 		userDao.insert(user);
 		profile.setUser(user);
 
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUser(Long id) {
+	public UserCredentials getUser(Long id) {
 		return userDao.get(id);
 	}
 

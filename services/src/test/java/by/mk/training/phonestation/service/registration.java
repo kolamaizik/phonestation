@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import by.mk.training.phonestation.dataaccess.UserProfileDao;
-import by.mk.training.phonestation.datamodel.User;
+import by.mk.training.phonestation.datamodel.UserCredentials;
 import by.mk.training.phonestation.datamodel.UserProfile;
 import by.mk.training.phonestation.datamodel.UserRole;
 
@@ -20,7 +20,7 @@ public class registration {
     @Test
     public void testRegistration() {
         UserProfile profile = new UserProfile();
-        User user = new User();
+        UserCredentials user = new UserCredentials();
 
         profile.setFirstName("testFName");
         profile.setLastName("testLName");
@@ -31,7 +31,7 @@ public class registration {
         userService.register(profile, user);
 
         UserProfile registredProfile = userService.getProfile(profile.getId());
-        User registredCredentials = userService.getUser(user.getId());
+        UserCredentials registredCredentials = userService.getUser(user.getId());
 
         Assert.assertNotNull(registredProfile);
         Assert.assertNotNull(registredCredentials);
