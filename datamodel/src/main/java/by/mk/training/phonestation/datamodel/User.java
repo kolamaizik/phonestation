@@ -1,6 +1,9 @@
 package by.mk.training.phonestation.datamodel;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 public class User extends AbstractModel {

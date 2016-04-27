@@ -8,7 +8,7 @@ import by.mk.training.phonestation.datamodel.UserProfile;
 @Repository
 public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> implements UserProfileDao {
 
-	protected UserProfileDaoImpl(Class<UserProfile> entityClass) {
-		super(entityClass);
-	}
+	protected UserProfileDaoImpl() {
+        super(UserProfile.class);
+    }
 }
