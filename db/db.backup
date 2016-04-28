@@ -1,4 +1,4 @@
-/*
+﻿/*
 CREATE DATABASE phonestation
   WITH OWNER = postgres
        ENCODING = 'UTF8'
@@ -19,7 +19,6 @@ COMMENT ON SCHEMA public
 */  
 
 SET search_path = public;
---SET search_path = test;
 
 SET default_with_oids = false;
 
@@ -102,9 +101,9 @@ CREATE TABLE payment (
     id integer NOT NULL,
     service_2_contract_id integer NOT NULL,
     period date NOT NULL,
-    total_sum numeric NOT NULL,
+    total_sum numeric,
     date_payment date,
-    paid bit(1)
+    paid boolean default false
 );
 
 
@@ -188,7 +187,7 @@ CREATE TABLE service_2_contract (
     id integer NOT NULL,
     service_id integer NOT NULL,
     contract_id integer NOT NULL,
-    blocked bit(1) DEFAULT B'0'::"bit"
+    blocked boolean DEFAULT false
 );
 
 

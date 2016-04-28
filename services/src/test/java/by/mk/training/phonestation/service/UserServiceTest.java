@@ -1,6 +1,6 @@
 package by.mk.training.phonestation.service;
+
 import java.lang.reflect.Field;
-import java.util.Date;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -21,55 +21,96 @@ import by.mk.training.phonestation.datamodel.UserRole;
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })
 public class UserServiceTest {
 
-    @Inject
-    private UserService userService;
+	@Inject
+	private UserService userService;
 
-    @Inject
-    private UserProfileDao userProfileDao;
+	@Inject
+	private UserProfileDao userProfileDao;
 
-    @Test
-    public void test() {
-        Assert.assertNotNull(userService);
-    }
+	@Test
+	public void test() {
+		Assert.assertNotNull(userService);
+	}
 
-    @Test
-    public void testEntityManagerInitialization() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-        Field f = AbstractDaoImpl.class.getDeclaredField("entityManager");
-        f.setAccessible(true);
-        EntityManager em = (EntityManager) f.get(userProfileDao);
+	@Test
+	public void testEntityManagerInitialization()
+			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		Field f = AbstractDaoImpl.class.getDeclaredField("entityManager");
+		f.setAccessible(true);
+		EntityManager em = (EntityManager) f.get(userProfileDao);
 
-        Assert.assertNotNull(em);
-    }
+		Assert.assertNotNull(em);
+	}
 
-    @Test
-    public void testRegistration() {
-    	UserProfile profile = new UserProfile();
-        UserCredentials user = new UserCredentials();
+	@Test
+	public void testRegistration() {
+		UserProfile profile = new UserProfile();
+		UserCredentials user = new UserCredentials();
 
-        profile.setFirstName("testFName");
-        profile.setLastName("testLName");
-        profile.setAddress("BLK 29");
+		profile.setFirstName("testFName");
+		profile.setLastName("testLName");
+		profile.setAddress("BLK 29");
 
-        user.setEmail(System.currentTimeMillis() + "mail@test.by");
-        user.setPassword("pswd");
-        user.setRole(UserRole.admin);
-        userService.register(profile, user);
+		user.setEmail(System.currentTimeMillis() + "mail@test.by");
+		user.setPassword("pswd");
+		user.setRole(UserRole.admin);
+		userService.register(profile, user);
 
-        UserProfile registredProfile = userService.getProfile(profile.getId());
-        UserCredentials registredUser = userService.getUser(user.getId());
+		UserProfile registredProfile = userService.getProfile(profile.getId());
+		UserCredentials registredUser = userService.getUser(user.getId());
 
-        Assert.assertNotNull(registredProfile);
-        Assert.assertNotNull(registredUser);
+		Assert.assertNotNull(registredProfile);
+		Assert.assertNotNull(registredUser);
+	}
 
-        String updatedFName = "updatedName";
-        profile.setFirstName(updatedFName);
-        userService.update(profile);
+	@Test
+	public void testUpdateUser() {
+		UserProfile profile = new UserProfile();
+		UserCredentials user = new UserCredentials();
 
-        Assert.assertEquals(updatedFName, userService.getProfile(profile.getId()).getFirstName());
+		profile.setFirstName("testUPDFName");
+		profile.setLastName("testLUPDName");
+		profile.setAddress("BLK UPD");
 
-        userService.delete(profile.getId());
+		user.setEmail(System.currentTimeMillis() + "UPDmail@test.by");
+		user.setPassword("pswd");
+		user.setRole(UserRole.abonent);
+		userService.register(profile, user);
 
-        Assert.assertNull(userService.getProfile(profile.getId()));
+		UserProfile registredProfile = userService.getProfile(profile.getId());
+		UserCredentials registredUser = userService.getUser(user.getId());
+
+		Assert.assertNotNull(registredProfile);
+		Assert.assertNotNull(registredUser);
+
+		String updatedFName = "updatedName";
+		profile.setFirstName(updatedFName);
+		userService.update(profile);
+
+		Assert.assertEquals(updatedFName, userService.getProfile(profile.getId()).getFirstName());
+	}
+	@Test
+	public void testDeleteUser() {
+		UserProfile profile = new UserProfile();
+		UserCredentials user = new UserCredentials();
+
+		profile.setFirstName("testUPDFName");
+		profile.setLastName("testLUPDName");
+		profile.setAddress("BLK UPD");
+
+		user.setEmail(System.currentTimeMillis() + "mail@test.by");
+		user.setPassword("pswd");
+		user.setRole(UserRole.abonent);
+		userService.register(profile, user);
+
+		UserProfile registredProfile = userService.getProfile(profile.getId());
+		UserCredentials registredUser = userService.getUser(user.getId());
+
+		Assert.assertNotNull(registredProfile);
+		Assert.assertNotNull(registredUser);
+
+		userService.delete(user.getId());
+		Assert.assertNull(userService.getProfile(profile.getId()));
         Assert.assertNull(userService.getUser(user.getId()));
-    }
+	}
 }
