@@ -1,6 +1,7 @@
 package by.mk.training.phonestation.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import by.mk.training.phonestation.dataaccess.UserCredentialsDao;
 import by.mk.training.phonestation.dataaccess.UserProfileDao;
+import by.mk.training.phonestation.dataaccess.filters.UserFilter;
 import by.mk.training.phonestation.datamodel.UserCredentials;
 import by.mk.training.phonestation.datamodel.UserProfile;
 import by.mk.training.phonestation.service.UserService;
@@ -49,5 +51,15 @@ public class UserServiceImpl implements UserService {
 	public void delete(Long id) {
 		userProfileDao.delete(id);
 		userDao.delete(id);
+	}
+
+	@Override
+	public List<UserProfile> find(UserFilter filter) {
+		return userProfileDao.find(filter);
+	}
+
+	@Override
+	public List<UserProfile> getAll() {
+		return userProfileDao.getAll();
 	}
 }

@@ -14,7 +14,5 @@ public class LogTest {
 		LOGGER.info("info message");
 		LOGGER.warn("warn message");
 		LOGGER.error("error message");
-
 	}
-
 }

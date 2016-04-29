@@ -1,6 +1,7 @@
 package by.mk.training.phonestation.service;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -12,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import by.mk.training.phonestation.dataaccess.UserProfileDao;
+import by.mk.training.phonestation.dataaccess.filters.UserFilter;
 import by.mk.training.phonestation.dataaccess.impl.AbstractDaoImpl;
 import by.mk.training.phonestation.datamodel.UserCredentials;
 import by.mk.training.phonestation.datamodel.UserProfile;
@@ -89,6 +91,7 @@ public class UserServiceTest {
 
 		Assert.assertEquals(updatedFName, userService.getProfile(profile.getId()).getFirstName());
 	}
+
 	@Test
 	public void testDeleteUser() {
 		UserProfile profile = new UserProfile();
@@ -111,6 +114,54 @@ public class UserServiceTest {
 
 		userService.delete(user.getId());
 		Assert.assertNull(userService.getProfile(profile.getId()));
-        Assert.assertNull(userService.getUser(user.getId()));
+		Assert.assertNull(userService.getUser(user.getId()));
+	}
+
+	@Test
+	public void testSearch() {
+		// clean all data from users
+		List<UserProfile> all = userService.getAll();
+		if (all != null) {
+			for (UserProfile userProfile : all) {
+				userService.delete(userProfile.getId());
+			}
+		}
+
+		// start create new data
+		int testObjectsCount = 5;
+		for (int i = 0; i < testObjectsCount; i++) {
+			UserProfile profile = new UserProfile();
+			UserCredentials user = new UserCredentials();
+
+			profile.setFirstName(i + " FName");
+			profile.setLastName(i + " LName");
+			profile.setAddress("BLK " + i);
+
+			user.setEmail(System.currentTimeMillis() + "mail@test.by");
+			user.setPassword("pswd");
+			user.setRole(UserRole.abonent);
+			userService.register(profile, user);
+		}
+
+		UserFilter filter = new UserFilter();
+		List<UserProfile> result = userService.find(filter);
+		Assert.assertEquals(testObjectsCount, result.size());
+
+		// test paging
+		filter.setFetchCredentials(true);
+		int limit = 3;
+		filter.setLimit(limit);
+		filter.setOffset(0);
+		result = userService.find(filter);
+		Assert.assertEquals(limit, result.size());
+
+		// test sort
+		filter.setLimit(null);
+		filter.setOffset(null);
+		filter.setSortOrder(true);
+		// filter.setSortProperty(UserProfile_.firstName);
+		result = userService.find(filter);
+
+		Assert.assertEquals(testObjectsCount, result.size());
 	}
 }
