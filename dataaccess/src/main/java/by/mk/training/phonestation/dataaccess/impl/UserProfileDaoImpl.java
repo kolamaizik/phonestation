@@ -3,15 +3,19 @@ package by.mk.training.phonestation.dataaccess.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 
 import by.mk.training.phonestation.dataaccess.UserProfileDao;
 import by.mk.training.phonestation.dataaccess.filters.UserFilter;
 import by.mk.training.phonestation.datamodel.UserProfile;
+import by.mk.training.phonestation.datamodel.UserProfile_;
 
 @Repository
 public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> implements UserProfileDao {
@@ -29,16 +33,16 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
 
         // set selection
         cq.select(from);
-/*
+
         if (filter.getUserName() != null) {
             Predicate fNameEqualCondition = cb.equal(from.get(UserProfile_.firstName), filter.getUserName());
             Predicate lNameEqualCondition = cb.equal(from.get(UserProfile_.lastName), filter.getUserName());
             cq.where(cb.or(fNameEqualCondition, lNameEqualCondition));
         }
         // set fetching
-        if (filter.isFetchCredentials()) {
-            from.fetch(UserProfile_.credentials, JoinType.LEFT);
-        }
+//        if (filter.isFetchCredentials()) {
+//            from.fetch(UserProfile_.credentials, JoinType.LEFT);
+//        }
 
         // set sort params
         if (filter.getSortProperty() != null) {
@@ -56,7 +60,5 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
         // set execute query
         List<UserProfile> allitems = q.getResultList();
         return allitems;
-*/
-		return null;
     }
 }
