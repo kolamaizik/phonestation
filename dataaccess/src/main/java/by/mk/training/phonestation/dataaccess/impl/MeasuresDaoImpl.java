@@ -10,7 +10,7 @@ import by.mk.training.phonestation.datamodel.Measures;
 
 @Repository
 public class MeasuresDaoImpl extends AbstractDaoImpl<Measures, Long> implements MeasuresDao {
-
+	
 	protected MeasuresDaoImpl() {
 		super(Measures.class);
 	}
