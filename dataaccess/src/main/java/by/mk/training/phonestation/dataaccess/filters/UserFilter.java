@@ -2,14 +2,15 @@ package by.mk.training.phonestation.dataaccess.filters;
 
 import javax.persistence.metamodel.SingularAttribute;
 
-public class UserFilter {
+public class UserFilter extends AbstractFilter {
 
     private String userName;
+/*
     private SingularAttribute sortProperty;
     private boolean sortOrder;
     private Integer offset;
     private Integer limit;
-
+*/
     private boolean isFetchCredentials;
 
     public String getUserName() {
@@ -19,7 +20,7 @@ public class UserFilter {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
+/*
     public SingularAttribute getSortProperty() {
         return sortProperty;
     }
@@ -51,7 +52,7 @@ public class UserFilter {
     public void setLimit(Integer limit) {
         this.limit = limit;
     }
-
+*/
     public boolean isFetchCredentials() {
         return isFetchCredentials;
     }
