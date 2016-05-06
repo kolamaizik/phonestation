@@ -22,6 +22,11 @@ SET search_path = public;
 
 SET default_with_oids = false;
 
+CREATE TABLE settings (
+    name  character varying(100),
+    value character varying(100)
+);
+
 --
 -- TOC entry 198 (class 1259 OID 17918)
 -- Name: contract; Type: TABLE; Schema: public; Owner: -
@@ -60,10 +65,10 @@ ALTER SEQUENCE contract_id_seq OWNED BY contract.id;
 
 --
 -- TOC entry 196 (class 1259 OID 17907)
--- Name: measures; Type: TABLE; Schema: public; Owner: -
+-- Name: measure; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE measures (
+CREATE TABLE measure (
     id integer NOT NULL,
     name character varying(100),
     value numeric NOT NULL
@@ -72,10 +77,10 @@ CREATE TABLE measures (
 
 --
 -- TOC entry 195 (class 1259 OID 17905)
--- Name: measures_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: measure_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE measures_id_seq
+CREATE SEQUENCE measure_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -86,10 +91,10 @@ CREATE SEQUENCE measures_id_seq
 --
 -- TOC entry 2211 (class 0 OID 0)
 -- Dependencies: 195
--- Name: measures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: measure_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE measures_id_seq OWNED BY measures.id;
+ALTER SEQUENCE measure_id_seq OWNED BY measure.id;
 
 
 --
@@ -140,7 +145,7 @@ CREATE TABLE price (
     date_begin date NOT NULL,
     date_end date,
     price numeric NOT NULL,
-    measures_id integer
+    measure_id integer
 );
 
 
@@ -334,7 +339,7 @@ ALTER TABLE ONLY contract ALTER COLUMN id SET DEFAULT nextval('contract_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY measures ALTER COLUMN id SET DEFAULT nextval('measures_id_seq'::regclass);
+ALTER TABLE ONLY measure ALTER COLUMN id SET DEFAULT nextval('measure_id_seq'::regclass);
 
 
 --
@@ -405,7 +410,7 @@ SELECT pg_catalog.setval('contract_id_seq', 1, false);
 --
 -- TOC entry 2202 (class 0 OID 17907)
 -- Dependencies: 196
--- Data for Name: measures; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: measure; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 
@@ -413,10 +418,10 @@ SELECT pg_catalog.setval('contract_id_seq', 1, false);
 --
 -- TOC entry 2219 (class 0 OID 0)
 -- Dependencies: 195
--- Name: measures_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: measure_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('measures_id_seq', 1, false);
+SELECT pg_catalog.setval('measure_id_seq', 1, false);
 
 
 --
@@ -541,11 +546,11 @@ ALTER TABLE ONLY contract
 
 --
 -- TOC entry 2061 (class 2606 OID 17915)
--- Name: measures_pk; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: measure_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY measures
-    ADD CONSTRAINT measures_pk PRIMARY KEY (id);
+ALTER TABLE ONLY measure
+    ADD CONSTRAINT measure_pk PRIMARY KEY (id);
 
 
 --
@@ -662,7 +667,7 @@ ALTER TABLE ONLY price
 --
 
 ALTER TABLE ONLY price
-    ADD CONSTRAINT price_fk1 FOREIGN KEY (measures_id) REFERENCES measures(id);
+    ADD CONSTRAINT price_fk1 FOREIGN KEY (measure_id) REFERENCES measure(id);
 
 
 --

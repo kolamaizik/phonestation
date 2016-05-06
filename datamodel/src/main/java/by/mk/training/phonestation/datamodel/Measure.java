@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Column;
 
 @Entity
-public class Measures extends AbstractModel {
+public class Measure extends AbstractModel {
 
 	@Column
 	private String name;

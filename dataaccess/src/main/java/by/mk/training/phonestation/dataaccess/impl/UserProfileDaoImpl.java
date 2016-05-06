@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import by.mk.training.phonestation.dataaccess.UserProfileDao;
 import by.mk.training.phonestation.dataaccess.filters.UserFilter;
 import by.mk.training.phonestation.datamodel.UserProfile;
-import by.mk.training.phonestation.datamodel.UserProfile_;
+//import by.mk.training.phonestation.datamodel.UserProfile_;
 
 @Repository
 public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> implements UserProfileDao {
@@ -33,7 +33,7 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
 
         // set selection
         cq.select(from);
-
+/*
         if (filter.getUserName() != null) {
             Predicate fNameEqualCondition = cb.equal(from.get(UserProfile_.firstName), filter.getUserName());
             Predicate lNameEqualCondition = cb.equal(from.get(UserProfile_.lastName), filter.getUserName());
@@ -60,5 +60,7 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
         // set execute query
         List<UserProfile> allitems = q.getResultList();
         return allitems;
+*/
+		return null;
     }
 }

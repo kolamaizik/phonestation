@@ -4,20 +4,20 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import by.mk.training.phonestation.datamodel.Measures;
+import by.mk.training.phonestation.datamodel.Measure;
 
 public interface MeasuresService {
 
 	@Transactional
-	void insert(Measures measures);
+	void insert(Measure measures);
 
 	@Transactional
-	void update(Measures measures);
+	void update(Measure measures);
 
 	@Transactional
 	void delete(Long id);
 
-	Measures getMeasures(Long id);
+	Measure getMeasures(Long id);
 
-	List<Measures> getAll();
+	List<Measure> getAll();
 }

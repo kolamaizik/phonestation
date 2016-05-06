@@ -21,8 +21,8 @@ public class Price extends AbstractModel {
 	@Column
 	private BigDecimal price;
 
-	@ManyToOne(targetEntity = Measures.class, fetch = FetchType.LAZY)
-	private Measures measures;
+	@ManyToOne(targetEntity = Measure.class, fetch = FetchType.LAZY)
+	private Measure measures;
 
 	public Service getService() {
 		return service;
@@ -56,11 +56,11 @@ public class Price extends AbstractModel {
 		this.price = price;
 	}
 
-	public Measures getMeasures() {
+	public Measure getMeasures() {
 		return measures;
 	}
 
-	public void setMeasures(Measures measures) {
+	public void setMeasures(Measure measures) {
 		this.measures = measures;
 	}
 }
