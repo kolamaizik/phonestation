@@ -11,3 +11,4 @@ services/.settings/
 *.classpath
 dataaccess/.settings/
 dataaccess/target/
+webapp/.settings/
