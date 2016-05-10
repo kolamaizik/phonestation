@@ -9,39 +9,37 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import by.mk.training.phonestation.datamodel.Measure;
+import by.mk.training.phonestation.datamodel.Services;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })
-public class MeasureTest {
+public class ServicesTest {
 
 	@Inject
-	private MeasureService measureService;
+	private ServiceService serviceService;
 
-	Measure measure = new Measure();
+	Services service = new Services();
 
 	@Before
 	public void testBefire() {
-		measure.setName("Mes 1");
-		measure.setValue(2.5);
+		service.setName("Serv 1");
 
-		measureService.insert(measure);
+		serviceService.insert(service);
 	}
 
 	@Test
 	public void testInsert() {
-		Measure regMes = measureService.getMeasure(measure.getId());
-		Assert.assertNotNull(regMes);
+		Services regSer = serviceService.getServices(service.getId());
+		Assert.assertNotNull(regSer);
 	}
 
 	@Test
 	public void testUpd() {
-		measure.setName("update mes1");
-		measure.setValue(3.5);
-		measureService.update(measure);
+		service.setName("update ser 1");
+		serviceService.update(service);
 
-		Measure regMes = measureService.getMeasure(measure.getId());
-		Assert.assertNotNull(regMes);
+		Services regSer = serviceService.getServices(service.getId());
+		Assert.assertNotNull(regSer);
 	}
 
 }

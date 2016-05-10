@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-public class Service extends AbstractModel {
+public class Services extends AbstractModel {
 
 	@Column
 	private String name;
@@ -15,7 +15,7 @@ public class Service extends AbstractModel {
 	private List<ServiceContract> serviceContract;
 
 	@Column
-	private Date dateEnd;
+	private Date lockDate;
 
 	@OneToMany(mappedBy = "service", fetch = FetchType.LAZY)
 	private List<Price> price;
@@ -36,12 +36,12 @@ public class Service extends AbstractModel {
 		this.serviceContract = serviceContract;
 	}
 
-	public Date getDateEnd() {
-		return dateEnd;
+	public Date getLockDate() {
+		return lockDate;
 	}
 
-	public void setDateEnd(Date dateEnd) {
-		this.dateEnd = dateEnd;
+	public void setLockDate(Date lockDate) {
+		this.lockDate = lockDate;
 	}
 
 	public List<Price> getPrice() {

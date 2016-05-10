@@ -10,40 +10,39 @@ import org.springframework.stereotype.Service;
 
 import by.mk.training.phonestation.dataaccess.MeasureDao;
 import by.mk.training.phonestation.datamodel.Measure;
-import by.mk.training.phonestation.service.LogTest;
-import by.mk.training.phonestation.service.MeasuresService;
+import by.mk.training.phonestation.service.MeasureService;
 
 @Service
-public class MeasureServiceImpl implements MeasuresService {
+public class MeasureServiceImpl implements MeasureService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(LogTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(MeasureServiceImpl.class);
 
 	@Inject
 	private MeasureDao measuresDao;
 
 	@Override
-	public void insert(Measure measures) {
-		measuresDao.insert(measures);
+	public void insert(Measure measure) {
+		measuresDao.insert(measure);
 
-		LOGGER.warn("Measure inserted: {}", measures);
+		LOGGER.info("Measure inserted: {}", measure);
 	}
 
 	@Override
-	public void update(Measure measures) {
-		measuresDao.update(measures);
+	public void update(Measure measure) {
+		measuresDao.update(measure);
 
-		LOGGER.warn("Measure updated: {}", measures);
+		LOGGER.info("Measure updated: {}", measure);
 	}
 
 	@Override
 	public void delete(Long id) {
 		measuresDao.delete(id);
 
-		LOGGER.warn("Measure deleted: {}", measuresDao.get(id));
+		LOGGER.info("Measure deleted: {}", measuresDao.get(id));
 	}
 
 	@Override
-	public Measure getMeasures(Long id) {
+	public Measure getMeasure(Long id) {
 		return measuresDao.get(id);
 	}
 

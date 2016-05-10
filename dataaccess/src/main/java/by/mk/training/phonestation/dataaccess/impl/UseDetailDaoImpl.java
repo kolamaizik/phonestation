@@ -5,7 +5,7 @@ import by.mk.training.phonestation.datamodel.UseDetail;
 
 public class UseDetailDaoImpl extends AbstractDaoImpl<UseDetail, Long> implements UseDetailDao {
 
-	protected UseDetailDaoImpl(Class<UseDetail> entityClass) {
-		super(entityClass);
+	protected UseDetailDaoImpl() {
+		super(UseDetail.class);
 	}
 }

@@ -1,6 +1,6 @@
 package by.mk.training.phonestation.dataaccess;
 
-import by.mk.training.phonestation.datamodel.Service;
+import by.mk.training.phonestation.datamodel.Services;
 
-public interface ServiceDao extends AbstractDao<Service, Long> {
+public interface ServiceDao extends AbstractDao<Services, Long> {
 }

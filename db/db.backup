@@ -176,7 +176,7 @@ ALTER SEQUENCE price_id_seq OWNED BY price.id;
 -- Name: service; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE service (
+CREATE TABLE services (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
     lock_date date
@@ -237,7 +237,7 @@ CREATE SEQUENCE service_id_seq
 -- Name: service_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE service_id_seq OWNED BY service.id;
+ALTER SEQUENCE service_id_seq OWNED BY services.id;
 
 
 --
@@ -363,7 +363,7 @@ ALTER TABLE ONLY price ALTER COLUMN id SET DEFAULT nextval('price_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY service ALTER COLUMN id SET DEFAULT nextval('service_id_seq'::regclass);
+ALTER TABLE ONLY services ALTER COLUMN id SET DEFAULT nextval('service_id_seq'::regclass);
 
 
 --
@@ -585,7 +585,7 @@ ALTER TABLE ONLY service_2_contract
 -- Name: service_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY service
+ALTER TABLE ONLY services
     ADD CONSTRAINT service_pk PRIMARY KEY (id);
 
 
@@ -595,7 +595,7 @@ ALTER TABLE ONLY service
 --
 
 ALTER TABLE ONLY service_2_contract
-    ADD CONSTRAINT services_2_contract_key0 UNIQUE (contract_id, service_id);
+    ADD CONSTRAINT service_2_contract_key0 UNIQUE (contract_id, service_id);
 
 
 --
@@ -658,7 +658,7 @@ ALTER TABLE ONLY payment
 --
 
 ALTER TABLE ONLY price
-    ADD CONSTRAINT price_fk0 FOREIGN KEY (service_id) REFERENCES service(id);
+    ADD CONSTRAINT price_fk0 FOREIGN KEY (service_id) REFERENCES services(id);
 
 
 --
@@ -676,7 +676,7 @@ ALTER TABLE ONLY price
 --
 
 ALTER TABLE ONLY service_2_contract
-    ADD CONSTRAINT service_2_contract_fk0 FOREIGN KEY (service_id) REFERENCES service(id);
+    ADD CONSTRAINT service_2_contract_fk0 FOREIGN KEY (service_id) REFERENCES services(id);
 
 
 --

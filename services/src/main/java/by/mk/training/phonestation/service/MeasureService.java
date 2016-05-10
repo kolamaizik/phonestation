@@ -6,7 +6,7 @@ import javax.transaction.Transactional;
 
 import by.mk.training.phonestation.datamodel.Measure;
 
-public interface MeasuresService {
+public interface MeasureService {
 
 	@Transactional
 	void insert(Measure measures);
@@ -17,7 +17,7 @@ public interface MeasuresService {
 	@Transactional
 	void delete(Long id);
 
-	Measure getMeasures(Long id);
+	Measure getMeasure(Long id);
 
 	List<Measure> getAll();
 }

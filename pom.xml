@@ -18,7 +18,7 @@
 		<module>datamodel</module>
 		<module>dataaccess</module>
 		<module>services</module>
-		<module>webapp</module>
+		<!--<module>webapp</module> -->
 	</modules>
 
 	<dependencyManagement>
@@ -32,6 +32,11 @@
 			<dependency>
 				<groupId>by.mk.training.phonestation</groupId>
 				<artifactId>dataaccess</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>by.mk.training.phonestation</groupId>
+				<artifactId>services</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 

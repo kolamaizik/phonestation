@@ -6,15 +6,14 @@ import by.mk.training.phonestation.webapp.page.AbstractPage;
 import by.mk.training.phonestation.webapp.page.user.UserPage;
 
 public class HomePage extends AbstractPage {
+	public HomePage() {
+		super();
 
-    public HomePage() {
-        super();
-        add(new Link("linkuser") {
-            @Override
-            public void onClick() {
-                setResponsePage(new UserPage());
-            }
-        });
-    }
-
+		add(new Link("linkuser") {
+			@Override
+			public void onClick() {
+				setResponsePage(new UserPage());
+			}
+		});
+	}
 }

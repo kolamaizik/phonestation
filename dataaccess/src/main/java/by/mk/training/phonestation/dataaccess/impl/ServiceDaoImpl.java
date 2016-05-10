@@ -1,11 +1,14 @@
 package by.mk.training.phonestation.dataaccess.impl;
 
+import org.springframework.stereotype.Repository;
+
 import by.mk.training.phonestation.dataaccess.ServiceDao;
-import by.mk.training.phonestation.datamodel.Service;
+import by.mk.training.phonestation.datamodel.Services;
 
-public class ServiceDaoImpl extends AbstractDaoImpl<Service, Long> implements ServiceDao {
+@Repository 
+public class ServiceDaoImpl extends AbstractDaoImpl<Services, Long> implements ServiceDao {
 
-	protected ServiceDaoImpl(Class<Service> entityClass) {
-		super(entityClass);
+	protected ServiceDaoImpl() {
+		super(Services.class);
 	}
 }
