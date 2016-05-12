@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
 import by.mk.training.phonestation.dataaccess.UserProfileDao;
 import by.mk.training.phonestation.dataaccess.filters.UserFilter;
 import by.mk.training.phonestation.datamodel.UserProfile;
-//import by.mk.training.phonestation.datamodel.UserProfile_;
 import by.mk.training.phonestation.datamodel.UserProfile_;
 
 @Repository

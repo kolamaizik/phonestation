@@ -1,6 +1,6 @@
 package by.mk.training.phonestation.dataaccess.filters;
 
-import javax.persistence.metamodel.SingularAttribute;
+//import javax.persistence.metamodel.SingularAttribute;
 
 public class UserFilter extends AbstractFilter {
 
@@ -60,5 +60,4 @@ public class UserFilter extends AbstractFilter {
     public void setFetchCredentials(boolean isFetchCredentials) {
         this.isFetchCredentials = isFetchCredentials;
     }
-
 }
