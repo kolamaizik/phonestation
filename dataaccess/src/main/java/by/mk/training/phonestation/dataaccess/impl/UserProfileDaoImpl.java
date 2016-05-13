@@ -63,14 +63,15 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
         return allitems;
     }
     
-    public void delByName(String type) {
+    public void deleteByName(String name) {
     	EntityManager em = getEntityManager();
-    	CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-    	CriteriaDelete<UserProfile> criteriaDelete = criteriaBuilder.createCriteriaDelete(UserProfile.class);
-
-    	Root<UserProfile> root = criteriaDelete.from(UserProfile.class);
+    	CriteriaBuilder cb = em.getCriteriaBuilder();
+    	CriteriaQuery<UserProfile> cq = cb.createQuery(UserProfile.class);
+    	Root<UserProfile> from = cq.from(UserProfile.class);
+    	//cq.where(arg0)
+    	//Root<UserProfile> root = criteriaDelete.from(UserProfile.class);
     	//criteriaDelete.where(criteriaBuilder.equal(root.get(), type));
-    	em.createQuery(criteriaDelete).executeUpdate();
+    	//em.createQuery(criteriaDelete).executeUpdate();
     	}
 
 

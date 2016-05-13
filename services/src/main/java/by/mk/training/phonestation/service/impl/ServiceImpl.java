@@ -14,7 +14,7 @@ import by.mk.training.phonestation.service.ServiceService;
 
 @Service
 public class ServiceImpl implements ServiceService {
-	//private static final Logger LOGGER = LoggerFactory.getLogger(LogTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceImpl.class);
 
 	@Inject
 	private ServiceDao serviceDao;
@@ -23,21 +23,28 @@ public class ServiceImpl implements ServiceService {
 	public void insert(Services service) {
 		serviceDao.insert(service);
 
-		//LOGGER.info("Services inserted: {}", service);
+		LOGGER.info("Services inserted: {}", service);
 	}
 
 	@Override
 	public void update(Services service) {
 		serviceDao.update(service);
 
-		//LOGGER.info("Services updated: {}", service);
+		LOGGER.info("Services updated: {}", service);
 	}
 
 	@Override
 	public void delete(Long id) {
 		serviceDao.delete(id);
 
-		//LOGGER.info("Services deleted: {}", serviceDao.get(id));
+		LOGGER.info("Services deleted: {}", serviceDao.get(id));
+	}
+
+	@Override
+	public void deleteByName(String name) {
+		serviceDao.deleteByName(name);
+
+		LOGGER.info("Services deleted: {}", name);
 	}
 
 	@Override
@@ -48,5 +55,10 @@ public class ServiceImpl implements ServiceService {
 	@Override
 	public List<Services> getAll() {
 		return serviceDao.getAll();
+	}
+
+	@Override
+	public List<Services> getSerByName(String name) {
+		return null;
 	}
 }

@@ -17,7 +17,10 @@ public interface ServiceService {
 	@Transactional
 	void delete(Long id);
 
-	Services getServices(Long id);
+	@Transactional
+	void deleteByName(String name);
 
+	Services getServices(Long id);
+	List<Services> getSerByName(String name);
 	List<Services> getAll();
 }

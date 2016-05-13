@@ -5,7 +5,7 @@ import by.mk.training.phonestation.datamodel.Payment;
 
 public class PaymentDaoImpl extends AbstractDaoImpl<Payment, Long> implements PaymentDao {
 
-	protected PaymentDaoImpl(Class<Payment> entityClass) {
-		super(entityClass);
+	protected PaymentDaoImpl() {
+		super(Payment.class);
 	}
 }

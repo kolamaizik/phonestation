@@ -21,7 +21,7 @@ public class ServicesTest {
 	Services service = new Services();
 
 	@Before
-	public void testBefire() {
+	public void testBefore() {
 		service.setName("Serv 1");
 
 		serviceService.insert(service);
@@ -42,4 +42,10 @@ public class ServicesTest {
 		Assert.assertNotNull(regSer);
 	}
 
+	@Test
+	public void testDelByName() {
+		serviceService.deleteByName(service.getName());
+		Services regSer = serviceService.getServices(service.getId());
+		Assert.assertNotNull(regSer);
+	}
 }

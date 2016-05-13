@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import by.mk.training.phonestation.datamodel.Price;
+import by.mk.training.phonestation.datamodel.Services;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })
@@ -25,9 +26,13 @@ public class PriceTest {
 	private ServiceService serviceService;
 
 	Price price = new Price();
+	Services service = new Services();
 
 	@Before
-	public void testBefire() {
+	public void testBefore() {
+		service.setName("Service");
+		serviceService.insert(service);
+
 		price.setPrice(new BigDecimal(1.0));
 		price.setDateBegin(new Date());
 		price.setService(serviceService.getServices(new Long(1)));
@@ -43,6 +48,16 @@ public class PriceTest {
 
 	@Test
 	public void testUpd() {
+		price.setPrice(new BigDecimal(2.1));
+		price.setDateBegin(new Date());
+		priceService.update(price);
+
+		Price regPrice = priceService.getPrice(price.getId());
+		Assert.assertNotNull(regPrice);
+	}
+	
+	@Test
+	public void testDel() {
 		price.setPrice(new BigDecimal(2.1));
 		price.setDateBegin(new Date());
 		priceService.update(price);

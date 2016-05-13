@@ -11,5 +11,4 @@ public class ServiceContractDaoImpl extends AbstractDaoImpl<ServiceContract, Lon
 	protected ServiceContractDaoImpl() {
 		super(ServiceContract.class);
 	}
-
 }
