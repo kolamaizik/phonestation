@@ -1,13 +1,19 @@
 package by.mk.training.phonestation.webapp.app;
 
+import javax.inject.Inject;
+
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import by.mk.training.phonestation.webapp.page.home.HomePage;
 
 @Component("wicketWebApplicationBean")
 public class WicketApplication extends WebApplication {
+	@Inject
+    private ApplicationContext applicationContext;
 
     /**
      * @see org.apache.wicket.Application#getHomePage()
@@ -25,6 +31,11 @@ public class WicketApplication extends WebApplication {
         super.init();
         getMarkupSettings().setStripWicketTags(true);
         // add your configuration here
+        
+        getComponentInstantiationListeners().add(new SpringComponentInjector(this, getApplicationContext()));
     }
-
+    
+    public ApplicationContext getApplicationContext() {
+        return applicationContext;
+    }
 }
