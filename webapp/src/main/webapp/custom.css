@@ -1,6 +1,29 @@
-.red-link {
-	font-weight: bold;
-	color: red
+table tr td, table tr th {
+	border: 1px solid black;
+	border-collapse: collapse;
 }
 
+#nav2, #nav2 li {
+	margin: 0;
+	padding: 0;
+}
 
+#nav2 {
+	text-align: center; /* пункты и текст горизонтально по центру */
+	background: #092E67;
+}
+
+#nav2 li {
+	display: inline-block;
+}
+
+#nav2 a {
+	display: block;
+	padding: 3px 15px;
+	color: #fff;
+	text-decoration: none;
+}
+
+#nav2 a:hover {
+	background: rgb(96, 145, 172);
+}

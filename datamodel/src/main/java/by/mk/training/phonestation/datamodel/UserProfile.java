@@ -1,12 +1,13 @@
 package by.mk.training.phonestation.datamodel;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-public class UserProfile extends AbstractModel {
+public class UserProfile extends AbstractModel implements Serializable {
 
 	@MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = { CascadeType.PERSIST, CascadeType.MERGE })

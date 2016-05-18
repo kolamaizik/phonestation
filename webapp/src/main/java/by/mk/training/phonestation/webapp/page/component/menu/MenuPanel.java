@@ -4,6 +4,9 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import by.mk.training.phonestation.webapp.page.home.HomePage;
+import by.mk.training.phonestation.webapp.page.measure.MeasurePage;
+import by.mk.training.phonestation.webapp.page.price.PricePage;
+import by.mk.training.phonestation.webapp.page.service.ServicePage;
 import by.mk.training.phonestation.webapp.page.user.UsersPage;
 
 public class MenuPanel extends Panel {
@@ -28,6 +31,27 @@ public class MenuPanel extends Panel {
             @Override
             public void onClick() {
                 setResponsePage(new UsersPage());
+            }
+        });
+        
+        add(new Link("link-services") {
+            @Override
+            public void onClick() {
+                setResponsePage(new ServicePage());
+            }
+        });
+        
+        add(new Link("link-measures") {
+            @Override
+            public void onClick() {
+                setResponsePage(new MeasurePage());
+            }
+        });
+        
+        add(new Link("link-prices") {
+            @Override
+            public void onClick() {
+                setResponsePage(new PricePage());
             }
         });
 

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
+//import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -22,58 +22,67 @@ import by.mk.training.phonestation.datamodel.UserProfile_;
 public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> implements UserProfileDao {
 
 	protected UserProfileDaoImpl() {
-        super(UserProfile.class);
-    }
+		super(UserProfile.class);
+	}
 
-    @Override
-    public List<UserProfile> find(UserFilter filter) {
-        EntityManager em = getEntityManager();
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<UserProfile> cq = cb.createQuery(UserProfile.class);
-        Root<UserProfile> from = cq.from(UserProfile.class);
+	@Override
+	public List<UserProfile> find(UserFilter filter) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<UserProfile> cq = cb.createQuery(UserProfile.class);
+		Root<UserProfile> from = cq.from(UserProfile.class);
 
-        // set selection
-        cq.select(from);
+		// set selection
+		cq.select(from);
 
-        if (filter.getUserName() != null) {
-            Predicate fNameEqualCondition = cb.equal(from.get(UserProfile_.firstName), filter.getUserName());
-            Predicate lNameEqualCondition = cb.equal(from.get(UserProfile_.lastName), filter.getUserName());
-            cq.where(cb.or(fNameEqualCondition, lNameEqualCondition));
-        }
-        // set fetching
-//        if (filter.isFetchCredentials()) {
-//            from.fetch(UserProfile_.credentials, JoinType.LEFT);
-//        }
+		if (filter.getUserName() != null) {
+			Predicate fNameEqualCondition = cb.equal(from.get(UserProfile_.firstName), filter.getUserName());
+			Predicate lNameEqualCondition = cb.equal(from.get(UserProfile_.lastName), filter.getUserName());
+			cq.where(cb.or(fNameEqualCondition, lNameEqualCondition));
+		}
+		// set fetching
+		// if (filter.isFetchCredentials()) {
+		// from.fetch(UserProfile_.credentials, JoinType.LEFT);
+		// }
 
-        // set sort params
-        if (filter.getSortProperty() != null) {
-            cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
-        }
+		// set sort params
+		if (filter.getSortProperty() != null) {
+			cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
+		}
 
-        TypedQuery<UserProfile> q = em.createQuery(cq);
+		TypedQuery<UserProfile> q = em.createQuery(cq);
 
-        // set paging
-        if (filter.getOffset() != null && filter.getLimit() != null) {
-            q.setFirstResult(filter.getOffset());
-            q.setMaxResults(filter.getLimit());
-        }
+		// set paging
+		if (filter.getOffset() != null && filter.getLimit() != null) {
+			q.setFirstResult(filter.getOffset());
+			q.setMaxResults(filter.getLimit());
+		}
 
-        // set execute query
-        List<UserProfile> allitems = q.getResultList();
-        return allitems;
-    }
-    
-    public void deleteByName(String name) {
-    	EntityManager em = getEntityManager();
-    	CriteriaBuilder cb = em.getCriteriaBuilder();
-    	CriteriaQuery<UserProfile> cq = cb.createQuery(UserProfile.class);
-    	Root<UserProfile> from = cq.from(UserProfile.class);
-    	//cq.where(arg0)
-    	//Root<UserProfile> root = criteriaDelete.from(UserProfile.class);
-    	//criteriaDelete.where(criteriaBuilder.equal(root.get(), type));
-    	//em.createQuery(criteriaDelete).executeUpdate();
-    	}
+		// set execute query
+		List<UserProfile> allitems = q.getResultList();
+		return allitems;
+	}
 
+	public void deleteByName(String name) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<UserProfile> cq = cb.createQuery(UserProfile.class);
+		Root<UserProfile> from = cq.from(UserProfile.class);
+		// cq.where(arg0)
+		// Root<UserProfile> root = criteriaDelete.from(UserProfile.class);
+		// criteriaDelete.where(criteriaBuilder.equal(root.get(), type));
+		// em.createQuery(criteriaDelete).executeUpdate();
+	}
 
+	@Override
+	public Long count(UserFilter filter) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<UserProfile> from = cq.from(UserProfile.class);
+		cq.select(cb.count(from));
+		TypedQuery<Long> q = em.createQuery(cq);
 
+		return q.getSingleResult();
+	}
 }

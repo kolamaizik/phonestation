@@ -1,8 +1,10 @@
 package by.mk.training.phonestation.dataaccess.filters;
 
+import java.io.Serializable;
+
 import javax.persistence.metamodel.SingularAttribute;
 
-public class AbstractFilter {
+public class AbstractFilter implements Serializable{
 
 	private SingularAttribute sortProperty;
 	private boolean sortOrder;
